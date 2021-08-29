@@ -27,18 +27,6 @@
                 <div class="col-lg-4 col-xl-3">
                     <div class="aside row row-30 row-md-50 justify-content-md-between">
                         <div class="aside-item col-sm-6 col-md-5 col-lg-12">
-                            <!-- RD Search Form-->
-                            <form class="rd-search form-search" action="{{route('shop.search')}}"
-                                  method="get">
-                                @csrf
-                                <div class="form-wrap">
-                                    <input type="hidden" value="title" name="searchCriteria">
-                                    <input class="form-input" id="search-form" type="text" name="search"
-                                           autocomplete="off">
-                                    <label class="form-label" for="search-form">Search in shop...</label>
-                                    <button class="button-search fl-bigmug-line-search74" type="submit"></button>
-                                </div>
-                            </form>
                             <h6 class="aside-title">Categories</h6>
                             <form action="{{route('shop.search')}}" method="get">
                                 @csrf
@@ -53,12 +41,12 @@
                                         <li>
                                             <label class="checkbox-inline">
                                                 <input name="categories[]" value="{{$packByCat->category}}"
-                                                       type="checkbox" onchange="this.form.submit()">{{$packByCat->category}}
+                                                       type="checkbox">{{$packByCat->category}}
                                             </label><span class="list-shop-filter-number">({{$packByCat->total}})</span>
                                         </li>
                                     @endforeach
                                 </ul>
-                                <button class="btn" type="submit">Submit</button>
+                                <button style="width:100% !important;padding:0px 10px !important;" class="button button-sm button-primary button-zakaria" type="submit">Filter</button>
                             </form>
                         </div>
                         <div class="aside-item col-12">
@@ -91,6 +79,18 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </form>
+                            <!-- RD Search Form-->
+                            <form class="rd-search form-search" action="{{route('shop.search')}}"
+                                  method="get">
+                                @csrf
+                                <div class="form-wrap">
+                                    <input type="hidden" value="title" name="searchCriteria">
+                                    <input class="form-input" id="search-form" type="text" name="search"
+                                           autocomplete="off">
+                                    <label class="form-label" for="search-form">Search in shop...</label>
+                                    <button class="button-search fl-bigmug-line-search74" type="submit"></button>
                                 </div>
                             </form>
                         </div>
@@ -181,10 +181,10 @@
                                 <!-- Product-->
                                 <article class="product">
                                     <div class="product-body">
-                                        <div class="product-figure"><img src={{ asset($pack->picture) }} alt=""
+                                        <div class="product-figure"><img src={{ asset('images/uploads/packs/'.$pack->picture) }} alt="{{ $pack->title }}"
                                                                          width="189" height="166"/>
                                         </div>
-                                        <h5 class="product-title"><a href="single-product.html">{{ $pack->title }}</a>
+                                        <h5 class="product-title"><a href="{{ route('pack.show', $pack->id) }}">{{ $pack->title }}</a>
                                         </h5>
                                         <div class="product-price-wrap">
                                             @if(!is_null($pack->sale_price))
