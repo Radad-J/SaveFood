@@ -89,6 +89,21 @@
                                 <option value="es">es</option>
                             </select>
                         </div>
+                        @if(Auth::user())
+                            <li class="nav-item">
+                                <form method="POST" action="/logout">
+                                    @csrf
+                                    <button type="submit" class="btn mt-2" style="color:white">Logout</button>
+                                </form>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Log in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">Sign up</a>
+                            </li>
+                        @endif
                     </div>
                 </div>
             </div>
