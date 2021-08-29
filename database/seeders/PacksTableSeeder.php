@@ -33,7 +33,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '16:00:00',
                 'available_hour_to' => '20:00:00',
                 'stock' => 20,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
             [
                 'store_id' => 1,
@@ -48,7 +48,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '18:00:00',
                 'available_hour_to' => '20:00:00',
                 'stock' => 18,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
             [
                 'store_id' => 4,
@@ -63,7 +63,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '18:00:00',
                 'available_hour_to' => '21:00:00',
                 'stock' => 15,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
             [
                 'store_id' => 2,
@@ -78,7 +78,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '18:00:00',
                 'available_hour_to' => '20:00:00',
                 'stock' => 10,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
             [
                 'store_id' => 3,
@@ -93,7 +93,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '17:00:00',
                 'available_hour_to' => '19:00:00',
                 'stock' => 20,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
             [
                 'store_id' => 1,
@@ -108,7 +108,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '16:00:00',
                 'available_hour_to' => '19:00:00',
                 'stock' => 20,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
             //more packs to create
             [
@@ -124,7 +124,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '19:00:00',
                 'available_hour_to' => '20:00:00',
                 'stock' => 5,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
             [
                 'store_id' => 4,
@@ -139,7 +139,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '16:00:00',
                 'available_hour_to' => '20:00:00',
                 'stock' => 7,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
             [
                 'store_id' => 1,
@@ -154,7 +154,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '16:00:00',
                 'available_hour_to' => '20:00:00',
                 'stock' => 16,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
             [
                 'store_id' => 2,
@@ -169,7 +169,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '18:00:00',
                 'available_hour_to' => '20:00:00',
                 'stock' => 5,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
             [
                 'store_id' => 3,
@@ -184,7 +184,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '16:00:00',
                 'available_hour_to' => '18:00:00',
                 'stock' => 25,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
             [
                 'store_id' => 4,
@@ -199,7 +199,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '16:00:00',
                 'available_hour_to' => '17:00:00',
                 'stock' => 3,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
             [
                 'store_id' => 2,
@@ -214,7 +214,7 @@ class PacksTableSeeder extends Seeder
                 'available_hour_from' => '16:00:00',
                 'available_hour_to' => '20:00:00',
                 'stock' => 3,
-                'picture'=> '/images/packs/single-product-1-530x480.png',
+                'picture'=> 'single-product-1-530x480.png',
             ],
         ]);
     }

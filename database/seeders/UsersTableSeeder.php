@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
                 'updated_at' => null,
-                'avatar' => null,
+                'avatar' => 'default_avatar.png',
             ],
             [
                 'role_id' => 2,
@@ -46,7 +46,7 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
                 'updated_at' => null,
-                'avatar' => null,
+                'avatar' => 'default_avatar.png',
             ],
             [
                 'role_id' => 2,
@@ -58,7 +58,7 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
                 'updated_at' => null,
-                'avatar' => null,
+                'avatar' => 'default_avatar.png',
             ],
             [
                 'role_id' => 2,
@@ -70,7 +70,7 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
                 'updated_at' => null,
-                'avatar' => null,
+                'avatar' => 'default_avatar.png',
             ],
             [
                 'role_id' => 2,
@@ -82,7 +82,7 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
                 'updated_at' => null,
-                'avatar' => null,
+                'avatar' => 'default_avatar.png',
             ],
             [
                 'role_id' => 2,
@@ -94,7 +94,7 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
                 'updated_at' => null,
-                'avatar' => null,
+                'avatar' => 'default_avatar.png',
             ], [
                 'role_id' => 2,
                 'store_id' => 3,
@@ -105,7 +105,7 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
                 'updated_at' => null,
-                'avatar' => null,
+                'avatar' => 'default_avatar.png',
             ], [
                 'role_id' => 2,
                 'store_id' => 4,
@@ -116,7 +116,7 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
                 'updated_at' => null,
-                'avatar' => null,
+                'avatar' => 'default_avatar.png',
             ],
         ]);
     }
