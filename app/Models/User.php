@@ -40,4 +40,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the shop that owns the user.
+     */
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    /**
+     * Get the shop that owns the user.
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Get the reservations.
+     */
+    public function packs()
+    {
+        return $this->belongsToMany(Pack::class, 'reservations');
+    }
 }
