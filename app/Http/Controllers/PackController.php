@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pack;
-use App\Models\Shop;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class ShopController extends Controller
+class PackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,40 +14,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        /* Get all packs to display */
-        $packs = Pack::paginate(9);
-
-        /* Gets total packs by name of the category */
-        $packsByCat = Pack::getPacksByCategory();
-
-        /* Gets the total number of packs */
-        $totalCountPacks = Pack::count();
-
-        return view('shop.index', ['packs' => $packs, 'packsByCat' => $packsByCat, 'totalCountPacks' => $totalCountPacks]);
-    }
-
-    /**
-     * Get the form (keyword and filter options)
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
-     */
-    public function search(Request $request)
-    {
-        if ($request->isMethod('get') && !is_null($request)) {
-            $packs = is_null($request->searchCriteria)
-                ? Shop::searchShop($request, null, true)
-                : Shop::searchShop($request, $request->searchCriteria);
-
-            /* Gets total packs by name of the category */
-            $packsByCat = Pack::getPacksByCategory();
-
-            /* Gets the total number of packs */
-            $totalCountPacks = Pack::count();
-            return view('shop.index', ['packs' => $packs, 'packsByCat' => $packsByCat, 'totalCountPacks' => $totalCountPacks]);
-
-        } else {
-            return view('shop.index');
-        }
+        //
     }
 
     /**
@@ -81,7 +46,13 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        //
+        $pack = Pack::find($id);
+        $categories = Pack::find($id)->categories;
+        $cat = [];
+        foreach($categories as $category){
+            $cat[] = $category->category;
+        }
+        return view('pack.show', ['pack' => $pack, 'cat' => $cat]);
     }
 
     /**
