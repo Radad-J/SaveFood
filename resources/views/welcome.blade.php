@@ -12,7 +12,7 @@
                                 <h2 class="swiper-title-1" data-caption-animate="fadeInLeft" data-caption-delay="100">Tasty Way <br>to Healthier Life
                                 </h2>
                                 <h5 class="swiper-title-2 text-width-medium" data-caption-animate="fadeInLeft" data-caption-delay="250">Our organic food contains all necessary elements and vitamins for your health.</h5>
-                                <div class="button-wrap" data-caption-animate="fadeInLeft" data-caption-delay="400"><a class="button button-lg button-shadow-5 button-default-outline button-zakaria" href="grid-shop.html">Shop now</a></div>
+                                <div class="button-wrap" data-caption-animate="fadeInLeft" data-caption-delay="400"><a class="button button-lg button-shadow-5 button-default-outline button-zakaria" href="{{route('shop.index')}}">Shop now</a></div>
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                         <h2 class="swiper-title-1" data-caption-animate="fadeInLeft" data-caption-delay="100">Make Your Food Organic</h2>
                         <h5 class="swiper-title-2" data-caption-animate="fadeInRight" data-caption-delay="250">With our wide variety of vegan & organic food products, we are sure <br class="d-none d-md-block">to help you make the right choice to start your day.
                         </h5>
-                        <div class="button-wrap" data-caption-animate="fadeInUp" data-caption-delay="400"><a class="button button-lg button-shadow-5 button-default-outline button-zakaria" href="grid-shop.html">Shop now</a></div>
+                        <div class="button-wrap" data-caption-animate="fadeInUp" data-caption-delay="400"><a class="button button-lg button-shadow-5 button-default-outline button-zakaria" href="{{route('shop.index')}}">Shop now</a></div>
                     </div>
                 </div>
             </div>

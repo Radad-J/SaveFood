@@ -19,7 +19,13 @@
                         <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                         <!-- RD Navbar Brand-->
                         <div class="rd-navbar-brand">
-                            <!--Brand--><a class="brand" href="index.html"><img class="brand-logo-dark" src="{{asset('images/logo-default-234x82.png')}}" alt="" width="117" height="41"/><img class="brand-logo-light" src="images/logo-inverse-234x82.png" alt="" width="117" height="41"/></a>
+
+                            <!--Brand--><a class="brand" href="{{route('welcome')}}"><img class="brand-logo-dark"
+                                                                                src="{{asset('images/logo-default-234x82.png')}}"
+                                                                                alt="" width="117" height="41"/><img
+                                    class="brand-logo-light" src="images/logo-inverse-234x82.png" alt="" width="117"
+                                    height="41"/></a>
+
                         </div>
                     </div>
                     <div class="rd-navbar-aside-element">
@@ -82,13 +88,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="rd-navbar-fixed-element-2 select-inline">
-                            <select data-dropdown-class="select-inline-dropdown">
-                                <option value="en">en</option>
-                                <option value="fr">fr</option>
-                                <option value="es">es</option>
-                            </select>
-                        </div>
+                        @if(Auth::user())
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <button type="submit" class="button btn-sm btn-primary mt-2">Logout</button>
+                            </form>
+                            <div>
+                                <a href="{{route('user.profile')}}">
+                                    <img style="border-radius: 50%"
+                                         src="{{ asset('images/uploads/users/'.auth()->user()->avatar) }}"
+                                         alt="{{auth()->user()->name}}" width="35"
+                                         height="35"/>
+                                </a>
+                            </div>
+                        @else
+                            <a style="display:inline!important;" class="nav-link" href="{{ route('login') }}">Log in</a>
+                            <a style="display:inline!important;" class="nav-link" href="{{ route('register') }}">Sign up</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -96,7 +112,7 @@
                 <div class="rd-navbar-main">
                     <div class="rd-navbar-nav-wrap">
                         <ul class="rd-navbar-nav">
-                            <li class="rd-nav-item"><a class="rd-nav-link" href="index.html">Home</a>
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('welcome')}}">Home</a>
                             </li>
                             <li class="rd-nav-item active"><a class="rd-nav-link" href="#">Pages</a>
                                 <ul class="rd-menu rd-navbar-dropdown">
