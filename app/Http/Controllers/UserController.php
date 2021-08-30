@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\RepresentationUser;
+use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,8 @@ class UserController extends Controller
     {
         $user_id = Auth::id();
         $user = User::find($user_id);
-
+        $user->totalreservations = Reservation::where('user_id', $user_id)->count();
+        $user->reservations = Reservation::where('user_id', $user_id);
         return view('user.profile', [
             'user' => $user,
         ]);

@@ -17,5 +17,11 @@ class Reservation extends Model
 
     public $timestamps = false;
 
-
+    /**
+     * Get the user who belongs to the reservation.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users');
+    }
 }
