@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 /* Home route */
-Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 
 /* Shop routes */
 Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
@@ -37,3 +39,6 @@ Route::get('role/{id}', [RoleController::class, 'show'])->where('id', '[0-9]+')-
 // Type routes
 Route::get('category', [CategoryController::class, 'index'])->name('category.index');
 Route::get('category/{id}', [CategoryController::class, 'show'])->where('id', '[0-9]+')->name('category.show');
+
+// User routes
+Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
