@@ -14,7 +14,7 @@
         <div class="breadcrumbs-custom-footer">
             <div class="container">
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{route('welcome')}}">Home</a></li>
                     <li class="active">Shop</li>
                 </ul>
             </div>

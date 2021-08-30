@@ -29,7 +29,7 @@
                         </button>
                         <!-- RD Navbar Brand-->
                         <div class="rd-navbar-brand">
-                            <!--Brand--><a class="brand" href="index.html"><img class="brand-logo-dark"
+                            <!--Brand--><a class="brand" href="{{route('welcome')}}"><img class="brand-logo-dark"
                                                                                 src="{{asset('images/logo-default-234x82.png')}}"
                                                                                 alt="" width="117" height="41"/><img
                                     class="brand-logo-light" src="images/logo-inverse-234x82.png" alt="" width="117"
@@ -119,7 +119,7 @@
                         @if(Auth::user())
                             <form method="POST" action="/logout">
                                 @csrf
-                                <button type="submit" class="btn mt-2" style="color:white">Logout</button>
+                                <button type="submit" class="button btn-sm btn-primary mt-2">Logout</button>
                             </form>
                             <div>
                                 <a href="{{route('user.profile')}}">
@@ -140,7 +140,7 @@
                 <div class="rd-navbar-main">
                     <div class="rd-navbar-nav-wrap">
                         <ul class="rd-navbar-nav">
-                            <li class="rd-nav-item"><a class="rd-nav-link" href="index.html">Home</a>
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('welcome')}}">Home</a>
                             </li>
                             <li class="rd-nav-item active"><a class="rd-nav-link" href="#">Pages</a>
                                 <ul class="rd-menu rd-navbar-dropdown">

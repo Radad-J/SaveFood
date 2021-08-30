@@ -61,8 +61,8 @@ class User extends Authenticatable
     /**
      * Get the reservations.
      */
-    public function packs()
+    public function reservations()
     {
-        return $this->belongsToMany(Pack::class, 'reservations');
+        return $this->hasMany(Reservation::class, 'reservations');
     }
 }
