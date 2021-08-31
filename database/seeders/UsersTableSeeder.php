@@ -75,8 +75,8 @@ class UsersTableSeeder extends Seeder
             [
                 'role_id' => 2,
                 'store_id' => 1,
-                'name' => 'Carrefour',
-                'email' => 'carrefouranderlecht@gmail.com',
+                'name' => 'John',
+                'email' => 'John@gmail.com',
                 'email_verified_at' => null,
                 'password' => Hash::make('32132132'),
                 'remember_token' => null,
@@ -87,8 +87,8 @@ class UsersTableSeeder extends Seeder
             [
                 'role_id' => 2,
                 'store_id' => 2,
-                'name' => 'Delhaize',
-                'email' => 'delhaizeanderlecht@gmail.com',
+                'name' => 'Sam',
+                'email' => 'sam2000@gmail.com',
                 'email_verified_at' => null,
                 'password' => Hash::make('14725836'),
                 'remember_token' => null,
@@ -98,8 +98,8 @@ class UsersTableSeeder extends Seeder
             ], [
                 'role_id' => 2,
                 'store_id' => 3,
-                'name' => 'Aldi',
-                'email' => 'aldianderlecht@gmail.com',
+                'name' => 'Maddie',
+                'email' => 'maddie_maddie@gmail.com',
                 'email_verified_at' => null,
                 'password' => Hash::make('12345678'),
                 'remember_token' => null,
@@ -109,8 +109,8 @@ class UsersTableSeeder extends Seeder
             ], [
                 'role_id' => 2,
                 'store_id' => 4,
-                'name' => 'Lidl',
-                'email' => 'lidlanderlecht@gmail.com',
+                'name' => 'Alex',
+                'email' => 'Alex1998@gmail.com',
                 'email_verified_at' => null,
                 'password' => Hash::make('98765432'),
                 'remember_token' => null,
