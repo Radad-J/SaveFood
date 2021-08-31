@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pack;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -13,6 +14,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $featuredPacks = Pack::inRandomOrder()->limit(8)->get();
+        return view('welcome', ['featuredPacks' => $featuredPacks]);
     }
 }

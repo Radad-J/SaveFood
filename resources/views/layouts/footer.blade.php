@@ -31,17 +31,15 @@
                 <div class="col-sm-6 col-md-7 col-lg-5 wow fadeInRight" data-wow-delay=".1s">
                     <h5 class="footer-modern-title">Quick Links</h5>
                     <ul class="footer-modern-list footer-modern-list-2 d-sm-inline-block d-md-block">
-                        <li><a href="our-team.html">Our Team</a></li>
                         <li><a href="grid-shop.html">New Products</a></li>
-                        <li><a href="blog-list.html">Blog</a></li>
                         <li><a href="about-us.html">About Us</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="contact-us.html">Contact Us</a></li>
-                        <li><a href="#">Smoothies</a></li>
-                        <li><a href="#">Energy Bowls</a></li>
-                        <li><a href="#">Juices</a></li>
-                        <li><a href="#">Ingredients</a></li>
-                        <li><a href="#">Delivery</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Meals</a></li>
+                        <li><a href="#">Pastries</a></li>
+                        <li><a href="#">Groceries</a></li>
+                        <li><a href="#">How it works</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3 wow fadeInRight" data-wow-delay=".2s">
@@ -79,7 +77,7 @@
     </div>
     <div class="footer-modern-panel text-center">
         <div class="container">
-            <p class="rights"><span>&copy;&nbsp; </span><span class="copyright-year"></span><span>&nbsp;</span><span>Vegano</span><span>.&nbsp; All rights reserved.</span><span>&nbsp;</span><a href="privacy-policy.html">Privacy Policy</a><span>.</span></p>
+            <p class="rights"><span>&copy;&nbsp; </span><span class="copyright-year"></span><span>&nbsp;</span><span>SaveFood</span><span>.&nbsp; All rights reserved.</span><span>&nbsp;</span><a href="privacy-policy.html">Privacy Policy</a><span>.</span></p>
         </div>
     </div>
 </footer>

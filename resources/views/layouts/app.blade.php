@@ -57,6 +57,7 @@
 <div id="app">
     <main>
         <div class="page">
+            @include('flash-message')
             @if(Route::currentRouteName() === 'home')
                 @include('layouts.home.header')
             @else

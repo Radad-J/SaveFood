@@ -17,7 +17,7 @@
                             <li><span class="contacts-classic-title">Call us:</span> <a class="link" href="tel:#">+1
                                     (844) 123 456 78</a>
                             </li>
-                            <li><a href="mailto:#">info@demolink.org</a></li>
+                            <li><a href="mailto:radad1998@gmail.com">info@savefood.com</a></li>
                         </ul>
                         <a class="rd-navbar-basket rd-navbar-basket-mobile fl-bigmug-line-shopping202"
                            href="#"><span>2</span></a>
@@ -30,8 +30,9 @@
                         <!-- RD Navbar Brand-->
                         <div class="rd-navbar-brand">
                             <!--Brand--><a class="brand" href="{{route('welcome')}}"><img class="brand-logo-dark"
-                                                                                src="{{asset('images/logo-default-234x82.png')}}"
-                                                                                alt="" width="117" height="41"/><img
+                                                                                          src="{{asset('images/logo-default-234x82.png')}}"
+                                                                                          alt="" width="117"
+                                                                                          height="41"/><img
                                     class="brand-logo-light" src="images/logo-inverse-234x82.png" alt="" width="117"
                                     height="41"/></a>
                         </div>
@@ -117,21 +118,33 @@
                             </div>
                         </div>
                         @if(Auth::user())
-                            <form method="POST" action="/logout">
-                                @csrf
-                                <button type="submit" class="button btn-sm btn-primary mt-2">Logout</button>
-                            </form>
                             <div>
-                                <a href="{{route('user.profile')}}">
-                                    <img style="border-radius: 50%"
-                                         src="{{ asset('images/uploads/users/'.auth()->user()->avatar) }}"
-                                         alt="{{auth()->user()->name}}" width="35"
-                                         height="35"/>
-                                </a>
+                                <ul class="rd-navbar-nav">
+                                    <li class="rd-nav-item active"><a class="rd-nav-link" href="#">
+                                            <img style="border-radius: 50%"
+                                                 src="{{ asset('images/uploads/users/'.auth()->user()->avatar) }}"
+                                                 alt="{{auth()->user()->name}}" width="35"
+                                                 height="35"/>
+                                        </a>
+                                        <ul class="rd-menu rd-navbar-dropdown">
+                                            <li class="rd-dropdown-item">
+                                                <a class="rd-dropdown-link" href="{{route('logout')}}">Log out</a>
+                                            </li>
+                                            <li class="rd-dropdown-item">
+
+                                                <a class="rd-dropdown-link" href="{{route('user.profile')}}">My
+                                                    profile</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
                         @else
-                            <a style="display:inline!important;" class="nav-link" href="{{ route('login') }}">Log in</a>
-                            <a style="display:inline!important;" class="nav-link" href="{{ route('register') }}">Sign up</a>
+                            <a style="display:inline!important;" class="nav-link"
+                               href="{{ route('login') }}">LOG IN&nbsp&nbsp/</a>
+
+                            <a style="display:inline!important;margin-left: -20px !important;" class="nav-link"
+                               href="{{ route('register') }}">SIGN UP</a>
                         @endif
                     </div>
                 </div>
@@ -140,74 +153,11 @@
                 <div class="rd-navbar-main">
                     <div class="rd-navbar-nav-wrap">
                         <ul class="rd-navbar-nav">
-                            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('welcome')}}">Home</a>
+                            <li class="rd-nav-item active"><a class="rd-nav-link" href="{{route('welcome')}}">Home</a>
                             </li>
-                            <li class="rd-nav-item active"><a class="rd-nav-link" href="#">Pages</a>
-                                <ul class="rd-menu rd-navbar-dropdown">
-                                    <li class="rd-dropdown-item active"><a class="rd-dropdown-link"
-                                                                           href="about-us.html">About Us</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="what-we-offer.html">What
-                                            We Offer</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="our-team.html">Our
-                                            Team</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="pricing-list.html">Pricing
-                                            List</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="testimonials.html">Testimonials</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="404-page.html">404
-                                            Page</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="coming-soon.html">Coming
-                                            Soon</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="privacy-policy.html">Privacy
-                                            Policy</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="search-results.html">Search
-                                            Results</a>
-                                    </li>
-                                </ul>
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('shop.index')}}">Shop</a>
                             </li>
-                            <li class="rd-nav-item"><a class="rd-nav-link" href="blog-list.html">Blog</a>
-                                <ul class="rd-menu rd-navbar-dropdown">
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="grid-blog.html">Grid
-                                            Blog</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="blog-post.html">Blog
-                                            Post</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="rd-nav-item"><a class="rd-nav-link" href="gallery.html">Gallery</a>
-                                <ul class="rd-menu rd-navbar-dropdown">
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="grid-gallery.html">Grid
-                                            Gallery</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="rd-nav-item"><a class="rd-nav-link" href="grid-shop.html">Shop</a>
-                                <ul class="rd-menu rd-navbar-dropdown">
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="grid-shop.html">Grid
-                                            Shop</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="shop-list.html">Shop
-                                            List</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="single-product.html">Single
-                                            Product</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="cart-page.html">Cart
-                                            Page</a>
-                                    </li>
-                                    <li class="rd-dropdown-item"><a class="rd-dropdown-link" href="checkout.html">Checkout</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="rd-nav-item"><a class="rd-nav-link" href="contact-us.html">Contact Us</a>
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('contactus')}}">Contact Us</a>
                             </li>
                         </ul>
                     </div>

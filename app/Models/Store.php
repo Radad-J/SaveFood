@@ -5,17 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-    class Store extends Model
+class Store extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'website',
+        'name',
+        'avatar',
         'GSM',
+        'website',
         'street_name',
         'postal_code',
         'country',
         'city',
+        'building_number',
     ];
 
     protected $table = 'stores';

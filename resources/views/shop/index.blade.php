@@ -46,7 +46,9 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                                <button style="width:100% !important;padding:0px 10px !important;" class="button button-sm button-primary button-zakaria" type="submit">Filter</button>
+                                <button style="width:100% !important;padding:0px 10px !important;"
+                                        class="button button-sm button-primary button-zakaria" type="submit">Filter
+                                </button>
                             </form>
                         </div>
                         <div class="aside-item col-12">
@@ -181,10 +183,12 @@
                                 <!-- Product-->
                                 <article class="product">
                                     <div class="product-body">
-                                        <div class="product-figure"><img src={{ asset('images/uploads/packs/'.$pack->picture) }} alt="{{ $pack->title }}"
-                                                                         width="189" height="166"/>
+                                        <div class="product-figure"><img
+                                                src={{ asset('images/uploads/packs/'.$pack->picture) }} alt="{{ $pack->title }}"
+                                                width="189" height="166"/>
                                         </div>
-                                        <h5 class="product-title"><a href="{{ route('pack.show', $pack->id) }}">{{ $pack->title }}</a>
+                                        <h5 class="product-title"><a
+                                                href="{{ route('pack.show', $pack->id) }}">{{ $pack->title }}</a>
                                         </h5>
                                         <div class="product-price-wrap">
                                             @if(!is_null($pack->sale_price))
@@ -200,7 +204,7 @@
                                                 href="{{ route('pack.show', $pack->id) }}"></a></div>
                                         <div class="product-button"><a
                                                 class="button button-primary button-zakaria fl-bigmug-line-shopping202"
-                                                href="cart-page.html"></a></div>
+                                                href="{{route('checkout.index')}}"></a></div>
                                     </div>
                                 </article>
                             </div>

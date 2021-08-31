@@ -2,20 +2,20 @@
 @section('content')
 
     <section class="breadcrumbs-custom">
-        <div class="parallax-container" data-parallax-img="images/bg-about.jpg">
+        <div class="parallax-container" data-parallax-img="{{asset('images/bg-about.jpg')}}">
             <div class="breadcrumbs-custom-body parallax-content context-dark">
                 <div class="container">
                     <h2 class="text-transform-capitalize breadcrumbs-custom-title">Single Product</h2>
-                    <h5 class="breadcrumbs-custom-text">We are industry-leading organic farm delivering the best
-                        products <br class="d-none d-md-block">that boost your daily life energy and potential.</h5>
+                    <h5 class="breadcrumbs-custom-text">We do the best to provide you a easier shopping
+                        <br class="d-none d-md-block">while saving our planet.</h5>
                 </div>
             </div>
         </div>
         <div class="breadcrumbs-custom-footer">
             <div class="container">
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="grid-shop.html">Shop</a></li>
+                    <li><a href="{{route('welcome')}}">Home</a></li>
+                    <li><a href="{{route('shop.index')}}">Shop</a></li>
                     <li class="active">Single Product</li>
                 </ul>
             </div>
@@ -33,7 +33,7 @@
                             <div class="item">
                                 <div class="slick-product-figure"><img
                                         src={{ asset('images/uploads/packs/'.$pack->picture) }} alt="{{$pack->title}}"
-                                    width="530" height="480"/>
+                                        width="530" height="480"/>
                                 </div>
                             </div>
                         </div>
@@ -47,11 +47,12 @@
                         </ul>
                         <div class="group-md group-middle">
                             @if(!is_null($pack->sale_price))
-                                <div class="single-product-price">{{ $pack->sale_price }}</div>
+                                <div class="single-product-price">{{ $pack->sale_price }}€</div>
                                 <del style="color:grey !important;"
-                                     class="single-product-price">{{ $pack->price }}</del>
+                                     class="single-product-price">{{ $pack->price }}€
+                                </del>
                             @else
-                                <div class="single-product-price">{{ $pack->price }}</div>
+                                <div class="single-product-price">{{ $pack->price }}€</div>
                             @endif
                             <div class="single-product-rating"><span class="icon mdi mdi-star"></span><span
                                     class="icon mdi mdi-star"></span><span class="icon mdi mdi-star"></span><span
@@ -108,12 +109,13 @@
                         <div class="box-comment">
                             <div class="unit flex-column flex-sm-row unit-spacing-md">
                                 <div class="unit-left"><a class="box-comment-figure" href="#"><img
-                                            src="images/user-1-119x119.jpg" alt="" width="119" height="119"/></a></div>
+                                            src="{{asset('images/uploads/stores/'.$store->avatar)}}" alt="" width="119"
+                                            height="119"/></a></div>
                                 <div class="unit-body">
                                     <div class="group-sm group-justify">
                                         <div>
                                             <div class="group-xs group-middle">
-                                                <h5 class="box-comment-author"><a href="#">Jane Doe</a></h5>
+                                                <h5 class="box-comment-author"><a href="#">{{$store->name}}</a></h5>
                                                 <div class="box-rating"><span class="icon mdi mdi-star"></span><span
                                                         class="icon mdi mdi-star"></span><span
                                                         class="icon mdi mdi-star"></span><span
@@ -122,12 +124,14 @@
                                             </div>
                                         </div>
                                         <div class="box-comment-time">
-                                            <time datetime="2020-11-30">Nov 30, 2020</time>
+                                            <time datetime="2020-11-30"></time>
                                         </div>
                                     </div>
-                                    <p class="box-comment-text">Urna molestie at elementum eu facilisis sed odio. Odio
-                                        eu feugiat pretium nibh ipsum consequat nisl vel. Sed risus ultricies tristique
-                                        nulla aliquet enim tortor. Sapien faucibus et molestie ac feugiat sed. </p>
+                                    <p class="box-comment-text">
+                                        {{$store->building_number}}, {{$store->street_name}}
+                                        , {{$store->postal_code}}, {{$store->city}}
+                                        , {{$store->country}}</td>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -216,98 +220,41 @@
         <div class="container">
             <h4 class="font-weight-sbold">Featured Products</h4>
             <div class="row row-lg row-30 row-lg-50 justify-content-center">
-                <div class="col-sm-6 col-md-5 col-lg-3">
-                    <!-- Product-->
-                    <article class="product">
-                        <div class="product-body">
-                            <div class="product-figure"><img src="images/product-1-196x134.png" alt="" width="196"
-                                                             height="134"/>
+                @foreach($featuredPacks as $featuredpack)
+                    <div class="col-sm-6 col-md-5 col-lg-3">
+                        <!-- Product-->
+                        <article class="product">
+                            <div class="product-body">
+                                <div class="product-figure"><img
+                                        src="{{ asset('images/uploads/packs/'.$featuredpack->picture) }}" alt=""
+                                        width="196"
+                                        height="134"/>
+                                </div>
+                                <h5 class="product-title"><a
+                                        href="{{route('pack.show', $featuredpack->id)}}">{{$featuredpack->title}}</a>
+                                </h5>
+                                @if(is_null($featuredpack->sale_price))
+                                    <div class="product-price">{{$featuredpack->price}}€</div>
+                                @else
+                                    <div class="product-price product-price-old">{{$featuredpack->sale_price}}€
+                                    </div>
+                                    <div class="product-price">{{$featuredpack->sale_price}}€</div>
+                                @endif
                             </div>
-                            <h5 class="product-title"><a href="single-product.html">Carrots</a></h5>
-                            <div class="product-price-wrap">
-                                <div class="product-price product-price-old">$30.00</div>
-                                <div class="product-price">$23.00</div>
+                            @if(!is_null($featuredpack->sale_price))
+                                <span class="product-badge product-badge-sale">Sale</span>
+                            @endif
+                            <div class="product-button-wrap">
+                                <div class="product-button"><a
+                                        class="button button-secondary button-zakaria fl-bigmug-line-search74"
+                                        href="{{route('pack.show', $featuredpack->id)}}"></a></div>
+                                <div class="product-button"><a
+                                        class="button button-primary button-zakaria fl-bigmug-line-shopping202"
+                                        href="{{route('checkout.index')}}"></a></div>
                             </div>
-                        </div>
-                        <span class="product-badge product-badge-sale">Sale</span>
-                        <div class="product-button-wrap">
-                            <div class="product-button"><a
-                                    class="button button-secondary button-zakaria fl-bigmug-line-search74"
-                                    href="single-product.html"></a></div>
-                            <div class="product-button"><a
-                                    class="button button-primary button-zakaria fl-bigmug-line-shopping202"
-                                    href="cart-page.html"></a></div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-3">
-                    <!-- Product-->
-                    <article class="product">
-                        <div class="product-body">
-                            <div class="product-figure"><img src="images/product-2-155x145.png" alt="" width="155"
-                                                             height="145"/>
-                            </div>
-                            <h5 class="product-title"><a href="single-product.html">Sparkling drinks</a></h5>
-                            <div class="product-price-wrap">
-                                <div class="product-price">$13.00</div>
-                            </div>
-                        </div>
-                        <span class="product-badge product-badge-new">New</span>
-                        <div class="product-button-wrap">
-                            <div class="product-button"><a
-                                    class="button button-secondary button-zakaria fl-bigmug-line-search74"
-                                    href="single-product.html"></a></div>
-                            <div class="product-button"><a
-                                    class="button button-primary button-zakaria fl-bigmug-line-shopping202"
-                                    href="cart-page.html"></a></div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-3">
-                    <!-- Product-->
-                    <article class="product">
-                        <div class="product-body">
-                            <div class="product-figure"><img src="images/product-3-180x154.png" alt="" width="180"
-                                                             height="154"/>
-                            </div>
-                            <h5 class="product-title"><a href="single-product.html">Tomatoes</a></h5>
-                            <div class="product-price-wrap">
-                                <div class="product-price">$16.99</div>
-                            </div>
-                        </div>
-                        <div class="product-button-wrap">
-                            <div class="product-button"><a
-                                    class="button button-secondary button-zakaria fl-bigmug-line-search74"
-                                    href="single-product.html"></a></div>
-                            <div class="product-button"><a
-                                    class="button button-primary button-zakaria fl-bigmug-line-shopping202"
-                                    href="cart-page.html"></a></div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-sm-6 col-md-5 col-lg-3">
-                    <!-- Product-->
-                    <article class="product">
-                        <div class="product-body">
-                            <div class="product-figure"><img src="images/product-4-222x153.png" alt="" width="222"
-                                                             height="153"/>
-                            </div>
-                            <h5 class="product-title"><a href="single-product.html">Persimmon</a></h5>
-                            <div class="product-price-wrap">
-                                <div class="product-price">$13.00</div>
-                            </div>
-                        </div>
-                        <span class="product-badge product-badge-new">New</span>
-                        <div class="product-button-wrap">
-                            <div class="product-button"><a
-                                    class="button button-secondary button-zakaria fl-bigmug-line-search74"
-                                    href="single-product.html"></a></div>
-                            <div class="product-button"><a
-                                    class="button button-primary button-zakaria fl-bigmug-line-shopping202"
-                                    href="cart-page.html"></a></div>
-                        </div>
-                    </article>
-                </div>
+                        </article>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

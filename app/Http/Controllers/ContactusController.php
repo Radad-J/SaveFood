@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pack;
-use App\Models\Store;
 use Illuminate\Http\Request;
 
-class PackController extends Controller
+class ContactusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class PackController extends Controller
      */
     public function index()
     {
-        //
+        return view('contactus.index');
     }
 
     /**
@@ -31,7 +29,7 @@ class PackController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,28 +40,18 @@ class PackController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $pack = Pack::find($id);
-        $categories = Pack::find($id)->categories;
-        $cat = [];
-        foreach ($categories as $category) {
-            $cat[] = $category->category;
-        }
-
-        $featuredPacks = Pack::inRandomOrder()->limit(4)->get();
-        $store = Store::find($pack->store_id);
-
-        return view('pack.show', ['pack' => $pack, 'cat' => $cat, 'store' => $store, 'featuredPacks' => $featuredPacks]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -74,8 +62,8 @@ class PackController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -86,7 +74,7 @@ class PackController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

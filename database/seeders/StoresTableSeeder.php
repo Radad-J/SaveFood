@@ -21,6 +21,8 @@ class StoresTableSeeder extends Seeder
         //Fill data
         DB::table('stores')->insert([
             [
+                'name' => 'Veggie Anderlecht',
+                'avatar'=>'store_avatar.png',
                 'website'=>'www.veggie.com',
                 'GSM'=>"+32256859876",
                 'postal_code'=>'1080',
@@ -30,31 +32,37 @@ class StoresTableSeeder extends Seeder
                 'building_number'=>'2'
             ],
             [
-                'website'=>'www.green.com',
-                'GSM'=>"+32256854521",
-                'postal_code'=>'1080',
-                'country'=>'Belgium',
-                'city'=>'Brussels',
-                'street_name'=>'Rue Fil',
-                'building_number'=>'8'
+                'name' => 'Green',
+                'avatar'=>'store_avatar.png',
+                'website' => 'www.green.com',
+                'GSM' => "+32256854521",
+                'postal_code' => '1080',
+                'country' => 'Belgium',
+                'city' => 'Brussels',
+                'street_name' => 'Rue Fil',
+                'building_number' => '8'
             ],
             [
-                'website'=>'www.eathealthy.com',
-                'GSM'=>"+32456851427",
-                'postal_code'=>'1080',
-                'country'=>'Belgium',
-                'city'=>'Brussels',
-                'street_name'=>'Rue Kerraven',
-                'building_number'=>'15'
+                'name' => 'Eat Healthy',
+                'avatar'=>'store_avatar.png',
+                'website' => 'www.eathealthy.com',
+                'GSM' => "+32456851427",
+                'postal_code' => '1080',
+                'country' => 'Belgium',
+                'city' => 'Brussels',
+                'street_name' => 'Rue Kerraven',
+                'building_number' => '15'
             ],
             [
-                'website'=>'www.organic.com',
-                'GSM'=>"+32456123845",
-                'postal_code'=>'1080',
-                'country'=>'Belgium',
-                'city'=>'Brussels',
-                'street_name'=>'Rue Mons',
-                'building_number'=>'23'
+                'name' => 'Organic',
+                'avatar'=>'store_avatar.png',
+                'website' => 'www.organic.com',
+                'GSM' => "+32456123845",
+                'postal_code' => '1080',
+                'country' => 'Belgium',
+                'city' => 'Brussels',
+                'street_name' => 'Rue Mons',
+                'building_number' => '23'
             ],
         ]);
     }

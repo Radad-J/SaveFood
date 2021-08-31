@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,8 +22,30 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::group(['middleware' => 'auth'], function () {
+
+//Profile routes
+    Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::get('/profile/{id}', [UserController::class, 'edit'])->where('id', '[0-9]+')->name('user.edit');
+    Route::patch('profile/{id}/update', [UserController::class, 'update'])->where('id', '[0-9]+')->name('user.update');
+
+    Route::get('/store', function () {
+        if(!Auth::check()) {
+            return redirect()->route('login');
+        }
+        return redirect()->route('welcome')->with('error', 'You are not authorised to access this link');
+    });
+
+// Store routes
+    Route::post('/store', [StoreController::class, 'store'])->name('store.store');
+    Route::get('/store/create', [StoreController::class, 'create'])->name('store.create');
+});
+
 /* Home route */
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
+
+//User routes
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 /* Shop routes */
 Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
@@ -40,5 +65,5 @@ Route::get('role/{id}', [RoleController::class, 'show'])->where('id', '[0-9]+')-
 Route::get('category', [CategoryController::class, 'index'])->name('category.index');
 Route::get('category/{id}', [CategoryController::class, 'show'])->where('id', '[0-9]+')->name('category.show');
 
-// User routes
-Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+//Contact us routes
+Route::get('/contactus', [App\Http\Controllers\ContactusController::class, 'index'])->name('contactus');
