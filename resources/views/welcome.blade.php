@@ -374,7 +374,7 @@
                                     @if(is_null($featuredpack->sale_price))
                                         <div class="product-price">{{$featuredpack->price}}€</div>
                                     @else
-                                        <div class="product-price product-price-old">{{$featuredpack->sale_price}}€
+                                        <div class="product-price product-price-old">{{$featuredpack->price}}€
                                         </div>
                                         <div class="product-price">{{$featuredpack->sale_price}}€</div>
                                     @endif
