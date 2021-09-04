@@ -10,7 +10,10 @@ class Reservation extends Model
     use HasFactory;
 
     protected $fillable = [
+        'pack_id',
+        'user_id',
         'quantity',
+        'status'
     ];
 
     protected $table = 'reservations';

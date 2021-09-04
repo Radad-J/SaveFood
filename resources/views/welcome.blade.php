@@ -389,7 +389,7 @@
                                         href="{{route('pack.show', $featuredpack->id)}}"></a></div>
                                 <div class="product-button"><a
                                         class="button button-primary button-zakaria fl-bigmug-line-shopping202"
-                                        href="{{route('checkout.index')}}"></a></div>
+                                        href="{{route('cart.checkout')}}"></a></div>
                             </div>
                         </article>
                     </div>
