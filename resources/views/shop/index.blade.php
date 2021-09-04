@@ -202,9 +202,17 @@
                                         <div class="product-button"><a
                                                 class="button button-secondary button-zakaria fl-bigmug-line-search74"
                                                 href="{{ route('pack.show', $pack->id) }}"></a></div>
-                                        <div class="product-button"><a
-                                                class="button button-primary button-zakaria fl-bigmug-line-shopping202"
-                                                href="{{route('checkout.index')}}"></a></div>
+
+
+                                        <form method="post" action="{{route('cart.add')}}">
+                                            @csrf
+                                            <input type="hidden" name="pack_id" value="{{$pack->id}}">
+                                            <div class="product-button">
+                                                <button
+                                                    class="button button-primary button-zakaria fl-bigmug-line-shopping202"
+                                                    type="submit" name="button-cart"></button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </article>
                             </div>
