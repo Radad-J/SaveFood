@@ -212,7 +212,6 @@
 
         //Add an event onChange to select the value of the country select so we can get all the cities using the country iso code
         function countryChange(e) {
-            console.log('hello')
             //Get the city from the select
             let cities = document.getElementById('city');
             cities.length = 0;

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StoreController;
@@ -51,9 +53,6 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/search', [App\Http\Controllers\ShopController::class, 'search'])->name('shop.search');
 
-/* Checkout routes */
-Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout.index');
-
 /*Product routes */
 Route::get('/pack/{id}', [App\Http\Controllers\PackController::class, 'show'])->where('id', '[0-9]+')->name('pack.show');
 
@@ -67,3 +66,15 @@ Route::get('category/{id}', [CategoryController::class, 'show'])->where('id', '[
 
 //Contact us routes
 Route::get('/contactus', [App\Http\Controllers\ContactusController::class, 'index'])->name('contactus');
+
+//Cart routes
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+
+Route::post('/cart-add', [CartController::class,'add'])->name('cart.add');
+Route::get('/cart-checkout', [CartController::class,'checkout'])->name('cart.checkout');
+Route::post('/cart-clear', [CartController::class,'clear'])->name('cart.clear');
+Route::post('/cart-removeitem', [CartController::class,'removeitem'])->name('cart.removeitem');
+Route::patch('/cart-updateitem', [CartController::class,'updateitem'])->name('cart.updateitem');
+
+//Checkout to charge customer
+Route::post('/charge', [CheckoutController::class, 'charge'])->name('checkout.charge');

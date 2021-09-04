@@ -69,13 +69,20 @@
                                 to {{ \Carbon\Carbon::parse($pack->available_hour_to)->format('H:i') }}</li>
                             <li><span>Stock:</span><span>{{ $pack->stock }}</span></li>
                         </ul>
-                        <div class="group-xs group-middle">
-                            <div class="product-stepper">
-                                <input class="form-input" type="number" data-zeros="true" value="1" min="1" max="1000">
-                            </div>
-                            <div><a class="button button-lg button-primary button-zakaria" href="#">Add to cart</a>
-                            </div>
-                        </div>
+
+
+                            <form action="{{route('cart.add')}}" method="post">
+                                @csrf
+                                <div class="group-xs group-middle mb-3">
+                                <div class="product-stepper">
+                                    <input type="hidden" name="pack_id" value="{{$pack->id}}">
+                                    <input class="form-input" type="number" name="quantity" data-zeros="true" value="1" min="1" max="1000">
+                                </div>
+                                <div><button class="button button-lg button-primary button-zakaria" type="submit">Add to cart</button>
+                                </div>
+                                </div>
+
+                            </form>
                         <hr class="hr-gray-100">
                         <div class="group-xs group-middle"><span class="list-social-title">Share</span>
                             <div>
@@ -250,7 +257,7 @@
                                         href="{{route('pack.show', $featuredpack->id)}}"></a></div>
                                 <div class="product-button"><a
                                         class="button button-primary button-zakaria fl-bigmug-line-shopping202"
-                                        href="{{route('checkout.index')}}"></a></div>
+                                        href="{{route('cart.checkout')}}"></a></div>
                             </div>
                         </article>
                     </div>
