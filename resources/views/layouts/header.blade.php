@@ -107,7 +107,7 @@
                         @if(Auth::user())
                             <div>
                                 <ul class="rd-navbar-nav">
-                                    <li class="rd-nav-item active"><a class="rd-nav-link" href="#">
+                                    <li class="rd-nav-item active"><a class="rd-nav-link" href="{{route('user.profile')}}">
                                             <img style="border-radius: 50%"
                                                  src="{{ asset('images/uploads/users/'.auth()->user()->avatar) }}"
                                                  alt="{{auth()->user()->name}}" width="35"
@@ -121,6 +121,11 @@
 
                                                 <a class="rd-dropdown-link" href="{{route('user.profile')}}">My
                                                     profile</a>
+                                            </li>
+                                            <li class="rd-dropdown-item">
+
+                                                <a class="rd-dropdown-link" href="{{route('store.mystore')}}">My
+                                                    store</a>
                                             </li>
                                         </ul>
                                     </li>

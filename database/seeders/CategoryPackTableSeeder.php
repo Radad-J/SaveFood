@@ -84,6 +84,42 @@ class CategoryPackTableSeeder extends Seeder
                 'category_id' => 3,
                 'pack_id' => 13,
             ],
+            [
+                'category_id' => 3,
+                'pack_id' => 14,
+            ],
+            [
+                'category_id' => 3,
+                'pack_id' => 15,
+            ],
+            [
+                'category_id' => 3,
+                'pack_id' => 16,
+            ],
+            [
+                'category_id' => 3,
+                'pack_id' => 17,
+            ],
+            [
+                'category_id' => 3,
+                'pack_id' => 18,
+            ],
+            [
+                'category_id' => 3,
+                'pack_id' => 19,
+            ],
+            [
+                'category_id' => 3,
+                'pack_id' => 20,
+            ],
+            [
+                'category_id' => 3,
+                'pack_id' => 21,
+            ],
+            [
+                'category_id' => 3,
+                'pack_id' => 22,
+            ],
         ]);
     }
 }

@@ -70,12 +70,12 @@
                                     <div>
                                         <div class="rd-range-wrap">
                                             <div class="rd-range-title">Price:</div>
-                                            <div class="rd-range-form-wrap"><span>$</span>
+                                            <div class="rd-range-form-wrap"><span>€</span>
                                                 <input class="rd-range-input rd-range-input-value-1" type="text"
                                                        name="min">
                                             </div>
                                             <div class="rd-range-divider"></div>
-                                            <div class="rd-range-form-wrap"><span>$</span>
+                                            <div class="rd-range-form-wrap"><span>€</span>
                                                 <input class="rd-range-input rd-range-input-value-2" type="text"
                                                        name="max">
                                             </div>
@@ -110,7 +110,7 @@
                                             <div class="unit-body">
                                                 <p class="product-minimal-title"><a href="single-product.html">Sparkling
                                                         Drinks</a></p>
-                                                <p class="product-minimal-price">$13.00</p>
+                                                <p class="product-minimal-price">13.00€</p>
                                             </div>
                                         </div>
                                     </article>
@@ -126,7 +126,7 @@
                                             <div class="unit-body">
                                                 <p class="product-minimal-title"><a
                                                         href="single-product.html">Tomatoes</a></p>
-                                                <p class="product-minimal-price">$16.00</p>
+                                                <p class="product-minimal-price">16.00€</p>
                                             </div>
                                         </div>
                                     </article>
@@ -142,7 +142,7 @@
                                             <div class="unit-body">
                                                 <p class="product-minimal-title"><a
                                                         href="single-product.html">Carrots</a></p>
-                                                <p class="product-minimal-price">$23.00</p>
+                                                <p class="product-minimal-price">23.00€</p>
                                             </div>
                                         </div>
                                     </article>

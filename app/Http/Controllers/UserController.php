@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RepresentationUser;
 use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -118,9 +117,9 @@ class UserController extends Controller
             if ($request) {
                 $this->validate(request(), [
                     'avatar' => ['sometimes', 'nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-                    'name' => ['sometimes', 'nullable', 'string', 'max:255'],
-                    'email' => ['sometimes', 'nullable', 'string', 'email', Rule::unique('users', 'email')->ignore($id), 'max:255'],
-                    'password' => ['sometimes', 'nullable', 'string', 'min:8', 'confirmed'],
+                    'name' => ['required', 'string', 'max:255'],
+                    'email' => ['required', 'string', 'email', Rule::unique('users', 'email')->ignore($id), 'max:255'],
+                    'password' => ['required', 'string', 'min:8', 'confirmed'],
                 ]);
             }
             $user = User::find($id);
@@ -137,6 +136,8 @@ class UserController extends Controller
                 //Implement check here to create directory if not exist already
                 Image::make($avatar)->resize(300, 300)->save(public_path('images/uploads/users/' . $filename));
                 $user->avatar = $filename;
+            }else{
+                $user->avatar = 'default_avatar.png';
             }
 
             $user->name = request('name');

@@ -5,9 +5,12 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactusController;
+use App\Http\Controllers\PackController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,8 +34,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile/{id}', [UserController::class, 'edit'])->where('id', '[0-9]+')->name('user.edit');
     Route::patch('profile/{id}/update', [UserController::class, 'update'])->where('id', '[0-9]+')->name('user.update');
 
+//My store routes
+    Route::get('/mystore', [StoreController::class, 'myStore'])->name('store.mystore');
+    Route::get('/mystore/search', [StoreController::class, 'search'])->name('store.search');
+    Route::get('/mystore/edit', [StoreController::class, 'edit'])->name('store.edit');
+    Route::patch('/profile/update', [StoreController::class, 'update'])->name('store.update');
+
+
     Route::get('/store', function () {
-        if(!Auth::check()) {
+        if (!Auth::check()) {
             return redirect()->route('login');
         }
         return redirect()->route('welcome')->with('error', 'You are not authorised to access this link');
@@ -44,17 +54,17 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 /* Home route */
-Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 //User routes
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 /* Shop routes */
-Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('shop.index');
-Route::get('/shop/search', [App\Http\Controllers\ShopController::class, 'search'])->name('shop.search');
+Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+Route::get('/shop/search', [ShopController::class, 'search'])->name('shop.search');
 
 /*Product routes */
-Route::get('/pack/{id}', [App\Http\Controllers\PackController::class, 'show'])->where('id', '[0-9]+')->name('pack.show');
+Route::get('/pack/{id}', [PackController::class, 'show'])->where('id', '[0-9]+')->name('pack.show');
 
 // Type routes
 Route::get('role', [RoleController::class, 'index'])->name('role.index');
@@ -65,16 +75,16 @@ Route::get('category', [CategoryController::class, 'index'])->name('category.ind
 Route::get('category/{id}', [CategoryController::class, 'show'])->where('id', '[0-9]+')->name('category.show');
 
 //Contact us routes
-Route::get('/contactus', [App\Http\Controllers\ContactusController::class, 'index'])->name('contactus');
+Route::get('/contactus', [ContactusController::class, 'index'])->name('contactus');
 
 //Cart routes
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
-Route::post('/cart-add', [CartController::class,'add'])->name('cart.add');
-Route::get('/cart-checkout', [CartController::class,'checkout'])->name('cart.checkout');
-Route::post('/cart-clear', [CartController::class,'clear'])->name('cart.clear');
-Route::post('/cart-removeitem', [CartController::class,'removeitem'])->name('cart.removeitem');
-Route::patch('/cart-updateitem', [CartController::class,'updateitem'])->name('cart.updateitem');
+Route::post('/cart-add', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart-checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('/cart-clear', [CartController::class, 'clear'])->name('cart.clear');
+Route::post('/cart-removeitem', [CartController::class, 'removeitem'])->name('cart.removeitem');
+Route::patch('/cart-updateitem', [CartController::class, 'updateitem'])->name('cart.updateitem');
 
 //Checkout to charge customer
 Route::post('/charge', [CheckoutController::class, 'charge'])->name('checkout.charge');

@@ -18,7 +18,7 @@ class CreatePacksTable extends Migration
             $table->timestamps();
             $table->foreignId('store_id');
             $table->string('title',60);
-            $table->string('description',60);
+            $table->string('description',255);
             $table->decimal('price',4);
             $table->decimal('sale_price',4)->nullable();
             $table->date('available_day_from');

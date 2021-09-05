@@ -33,12 +33,12 @@ class CheckoutController extends Controller
             foreach(\Cart::getContent() as $item){
 
                 $pack = Pack::find($item->id);
-                if($pack) $pack->stock = $pack->stock - $item->quantity;
+                if($pack) $totalstock = $pack->stock - $item->quantity;
 
-                if ($pack->stock < 0){
+                if ($totalstock < 0){
                     return redirect()->route('welcome')->with('error', 'Sorry! not enough in stock, please come back later');
                 }else{
-                        $pack->stock = $pack->stock;
+                        $pack->stock = $totalstock;
                         $pack->save();
 
                     Reservation::create([
