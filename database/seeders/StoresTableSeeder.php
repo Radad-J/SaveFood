@@ -23,7 +23,7 @@ class StoresTableSeeder extends Seeder
             [
                 'name' => 'Veggie Anderlecht',
                 'avatar'=>'store_avatar.png',
-                'website'=>'www.veggie.com',
+                'website'=>'https://www.veggie.com',
                 'GSM'=>"+32256859876",
                 'postal_code'=>'1080',
                 'country'=>'Belgium',
@@ -34,7 +34,7 @@ class StoresTableSeeder extends Seeder
             [
                 'name' => 'Green',
                 'avatar'=>'store_avatar.png',
-                'website' => 'www.green.com',
+                'website' => 'https://www.green.com',
                 'GSM' => "+32256854521",
                 'postal_code' => '1080',
                 'country' => 'Belgium',
@@ -45,7 +45,7 @@ class StoresTableSeeder extends Seeder
             [
                 'name' => 'Eat Healthy',
                 'avatar'=>'store_avatar.png',
-                'website' => 'www.eathealthy.com',
+                'website' => 'https://www.eathealthy.com',
                 'GSM' => "+32456851427",
                 'postal_code' => '1080',
                 'country' => 'Belgium',
@@ -56,7 +56,7 @@ class StoresTableSeeder extends Seeder
             [
                 'name' => 'Organic',
                 'avatar'=>'store_avatar.png',
-                'website' => 'www.organic.com',
+                'website' => 'https://www.organic.com',
                 'GSM' => "+32456123845",
                 'postal_code' => '1080',
                 'country' => 'Belgium',

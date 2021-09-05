@@ -62,4 +62,8 @@ class Pack extends Model
             ->groupBy('cat.category')
             ->get();
     }
+
+    public static function searchByStoreId(string $keyword, string $storeId){
+        return self::where('store_id',$storeId)->where('title','LIKE',"%{$keyword}%")->paginate(9);
+    }
 }
