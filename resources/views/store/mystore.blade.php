@@ -114,7 +114,7 @@
                     </form>
                 </div>
                 <div class="col-sm-4 col-md-4 col-lg-2 col-xl-2">
-                    <a class="button button button-shadow-2 button-primary button-zakaria" href={{route('store.edit')}}>Add new product</a>
+                    <a class="button button button-shadow-2 button-primary button-zakaria" href={{route('pack.create')}}>Add new product</a>
                 </div>
             </div>
             <div class="row row-30 row-lg-50">
@@ -142,7 +142,7 @@
                                 <div class="product-button-wrap">
                                     <div class="product-button mr-2"><a
                                             class="button button-secondary button-zakaria fas fa-edit"
-                                            href="{{ route('pack.show', $pack->id) }}"></a></div>
+                                            href="{{ route('pack.edit', $pack->id) }}"></a></div>
 
 
                                     <form method="post" action="{{route('cart.add')}}">

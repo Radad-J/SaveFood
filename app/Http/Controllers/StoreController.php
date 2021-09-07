@@ -145,7 +145,7 @@ class StoreController extends Controller
             }
             return redirect()->route('store.mystore')->with('success', 'Store created successfully');
         } else {
-            return redirect()->route('welcome')->with('error', 'Sorry, you already have a store.If you want to create another one please register a new account');
+            return redirect()->route('welcome')->with('error', 'Sorry, you need to create a store before accessing this link');
         }
     }
 
