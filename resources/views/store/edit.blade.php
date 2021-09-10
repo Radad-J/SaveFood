@@ -16,7 +16,7 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Avatar(optional)') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="avatar" value="{{ $store->avatar }}"type="file" class="form-control" name="avatar">
+                                    <input id="avatar" value="{{ $store->avatar }}" type="file" class="form-control" name="avatar">
                                 </div>
                                 @error('avatar')
                                 <span class="invalid-feedback" role="alert">

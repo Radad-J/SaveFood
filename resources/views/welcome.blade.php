@@ -477,7 +477,7 @@
                     </div>
                 </div>
                 <div class="col-md-7 col-xl-6">
-                    <h2 class="text-transform-capitalize wow fadeInRight">Why Go Vegan?</h2>
+                    <h2 class="text-transform-capitalize wow fadeInRight">Why choose SaveFood?</h2>
                     <!-- Bootstrap collapse-->
                     <div class="card-group-custom card-group-corporate" id="accordion1" role="tablist"
                          aria-multiselectable="false">

@@ -41,7 +41,7 @@
                                 <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1"
                                                                             data-toggle="tab">About</a></li>
                                 <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2"
-                                                                            data-toggle="tab">More</a></li>
+                                                                            data-toggle="tab">Reservations</a></li>
                             </ul>
                         </div>
                         <!-- Tab panes-->
@@ -75,13 +75,17 @@
                                         </td>
                                     </tr>
                                 </table>
+                                <a class="button button-lg button-shadow-2 button-primary button-zakaria" href={{route('store.edit')}}>Edit my store</a>
                             </div>
                             <div class="tab-pane fade" id="tabs-1-2">
-                                <p></p>
+                                <ul class="footer-modern-list footer-modern-list-2 d-sm-inline-block d-md-block">
+                                    <li><a href="{{route('reservation.showResByStat', ['status' => "not claimed"])}}">Pending claim</a></li>
+                                    <li><a href="{{route('reservation.showResByStat', ['status' => "claimed"])}}">Claimed</a></li>
+                                    <li><a href="{{route('reservation.showResByStat', ['status' => "expired"])}}">Expired packs</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <a class="button button-lg button-shadow-2 button-primary button-zakaria" href={{route('store.edit')}}>Edit my store</a>
                 </div>
                 <div class="col-md-11 col-lg-6 col-xl-7">
                     <img class="float-right" src="{{asset('images/uploads/stores/'.$store->avatar)}}" width="400"
@@ -114,7 +118,7 @@
                     </form>
                 </div>
                 <div class="col-sm-4 col-md-4 col-lg-2 col-xl-2">
-                    <a class="button button button-shadow-2 button-primary button-zakaria" href={{route('store.edit')}}>Add new product</a>
+                    <a class="button button button-shadow-2 button-primary button-zakaria" href={{route('pack.create')}}>Add new product</a>
                 </div>
             </div>
             <div class="row row-30 row-lg-50">
@@ -142,7 +146,7 @@
                                 <div class="product-button-wrap">
                                     <div class="product-button mr-2"><a
                                             class="button button-secondary button-zakaria fas fa-edit"
-                                            href="{{ route('pack.show', $pack->id) }}"></a></div>
+                                            href="{{ route('pack.edit', $pack->id) }}"></a></div>
 
 
                                     <form method="post" action="{{route('cart.add')}}">

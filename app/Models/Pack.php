@@ -13,12 +13,17 @@ class Pack extends Model
     use HasFactory;
 
     protected $fillable = [
+        'store_id',
         'title',
         'description',
         'price',
-        'available_from',
-        'available_to',
-        'stock'
+        'sale_price',
+        'available_day_from',
+        'available_day_to',
+        'available_hour_from',
+        'available_hour_to',
+        'stock',
+        'picture',
     ];
 
     protected $table = 'packs';

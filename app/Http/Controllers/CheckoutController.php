@@ -27,7 +27,7 @@ class CheckoutController extends Controller
             $charge = Charge::create(array(
                 'customer' => $customer->id,
                 'amount' => \Cart::getTotal() * 100,
-                'currency' => 'usd'
+                'currency' => 'eur'
             ));
 
             foreach(\Cart::getContent() as $item){
@@ -41,13 +41,13 @@ class CheckoutController extends Controller
                         $pack->stock = $totalstock;
                         $pack->save();
 
-                    Reservation::create([
-                        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                        'user_id' => Auth::check(),
+                    $reservation = Reservation::create([
+                        'user_id' => Auth()->id(),
                         'pack_id' => $item->id,
                         'quantity' => $item->quantity,
                         'status' => 'not claimed',
                     ]);
+                    if(!$reservation)  return redirect()->route('welcome')->with('error', 'Sorry there was a problem, please come back later !');
                 }
             }
 

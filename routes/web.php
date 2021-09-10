@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\PackController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StoreController;
@@ -38,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/mystore', [StoreController::class, 'myStore'])->name('store.mystore');
     Route::get('/mystore/search', [StoreController::class, 'search'])->name('store.search');
     Route::get('/mystore/edit', [StoreController::class, 'edit'])->name('store.edit');
-    Route::patch('/profile/update', [StoreController::class, 'update'])->name('store.update');
+    Route::patch('/mystore/update', [StoreController::class, 'update'])->name('store.update');
 
 
     Route::get('/store', function () {
@@ -88,3 +89,13 @@ Route::patch('/cart-updateitem', [CartController::class, 'updateitem'])->name('c
 
 //Checkout to charge customer
 Route::post('/charge', [CheckoutController::class, 'charge'])->name('checkout.charge');
+
+// Store routes
+Route::post('/mystore/newpack/store', [PackController::class, 'store'])->name('pack.store');
+Route::get('/mystore/newpack/', [PackController::class, 'create'])->name('pack.create');
+Route::get('/mystore/editpack/{id}', [PackController::class, 'edit'])->where('id', '[0-9]+')->name('pack.edit');
+Route::patch('/mystore/updatepack/{id}', [PackController::class, 'update'])->where('id', '[0-9]+')->name('pack.update');
+
+//Store Reservations
+Route::get('/mystore/reservations', [ReservationController::class, 'showReservations'])->name('reservation.showResByStat');
+Route::post('/mystore/reservations/{id}/update', [ReservationController::class, 'changeStatus'])->where('id', '[0-9]+')->name('reservation.changeStatus');
