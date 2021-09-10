@@ -16,7 +16,7 @@
                 <ul class="breadcrumbs-custom-path">
                     <li><a href="{{route('welcome')}}">Home</a></li>
                     <li><a href="{{route('shop.index')}}">Shop</a></li>
-                    <li class="active">Single Product</li>
+                    <li class="active">Single Pack</li>
                 </ul>
             </div>
         </div>

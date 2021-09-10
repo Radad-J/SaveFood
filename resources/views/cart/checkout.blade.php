@@ -83,9 +83,9 @@
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                             data-key="{{ env('STRIPE_PUB_KEY') }}"
                             data-amount="{{Cart::getTotal()*100}}"
-                            data-name="Stripe Demo"
-                            data-description="Online course about integrating Stripe"
-                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                            data-name="SaveFood"
+                            data-description="Save the earth whilst shopping"
+                            data-image="{{asset('/images/favicon.ico')}}"
                             data-locale="auto"
                             data-currency="eur">
                         </script>
@@ -94,7 +94,7 @@
                             // have more than 1 button of that class
                             document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
                         </script>
-                        <button type="submit" class="modifbtn float-right button button-shadow-2 button-zakaria button-lg button-primary">Buy my things</button>
+                        <button type="submit" class="modifbtn float-right button button-shadow-2 button-zakaria button-lg button-primary">Pay by card</button>
                     </form>
                 </div>
             </div>

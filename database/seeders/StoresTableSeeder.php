@@ -33,7 +33,7 @@ class StoresTableSeeder extends Seeder
             ],
             [
                 'name' => 'Green',
-                'avatar'=>'store_avatar.png',
+                'avatar'=>'green.jpg',
                 'website' => 'https://www.green.com',
                 'GSM' => "+32256854521",
                 'postal_code' => '1080',

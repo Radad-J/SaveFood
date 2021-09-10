@@ -138,7 +138,7 @@ class PackController extends Controller
         foreach ($pack->categories as $category) {
             $packcat[] = $category->id;
         }
-        return view('pack.edit', ['pack' => $pack, 'allcategories' => $allcategories, 'packcat'=>$packcat]);
+        return view('pack.edit', ['pack' => $pack, 'allcategories' => $allcategories, 'packcat' => $packcat]);
     }
 
     /**
@@ -150,6 +150,63 @@ class PackController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate(request(), [
+            'title' => ['required', 'unique:stores,name', 'string', 'max:255'],
+            'categories' => ['required', 'array', 'min:1', 'max:4'],
+            'categories.*' => ['required', 'integer'],
+            'description' => ['required', 'string', 'min:10', 'max:255'],
+            'stock' => ['required', 'integer', 'min:1', 'max:255'],
+            'price' => ['required', 'numeric', 'between:0,99.99', 'min:0', 'max:100'],
+            'sale_price' => ['sometimes', 'nullable', 'numeric', 'between:0,99.99', 'min:0', 'max:100', 'lt:price'],
+            'available_day_from' => ['required', 'date', 'date_format:Y-m-d', 'before:available_day_to', 'after:today'],
+            'available_day_to' => ['required', 'date', 'date_format:Y-m-d', 'after:available_day_from'],
+            'available_hour_from' => ['date_format:H:i:s', 'required', 'string'],
+            'available_hour_to' => ['date_format:H:i:s', 'required', 'string', 'after:available_hour_from'],
+            'picture' => ['sometimes', 'nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+        ]);
+
+        $pack = Pack::find($id);
+
+        if ($request->hasfile('picture') || !is_null($request->picture)) {
+            $picture = $request->file('picture');
+
+            //Delete old avatar only if he is not the default one and exists
+            if (($pack->picture !== 'default_pack.png') && file_exists('images/uploads/packs/' . $pack->picture)) {
+                unlink('images/uploads/packs/' . $pack->picture);
+            }
+            $filename = time() . '.' . $picture->getClientOriginalExtension();
+
+            //Implement check here to create directory if not exist already
+            Image::make($picture)->resize(300, 300)->save(public_path('images/uploads/packs/' . $filename));
+            $pack->picture = $filename;
+        } else {
+            $pack->picture = 'default_pack.png';
+        }
+
+        $pack->store_id = Auth()->user()->store_id;
+        $pack->title = $request->title;
+        $pack->description = $request->description;
+        $pack->price = $request->price;
+        $pack->sale_price = $request->sale_price;
+        $pack->available_day_from = $request->available_day_from;
+        $pack->available_day_to = $request->available_day_to;
+        $pack->available_hour_from = $request->available_hour_from;
+        $pack->available_hour_to = $request->available_hour_to;
+        $pack->stock = $request->stock;
+
+        //Delete the old categories and insert the new ones
+        $deleteOldCat = Db::table('category_pack')->where('pack_id', '=', $id)->delete();
+        if ($deleteOldCat) {
+            foreach ($request->categories as $category) {
+                $row = DB::table('category_pack')->insert([
+                    ['category_id' => $category, 'pack_id' => $pack->id],
+                ]);
+                if (!$row) return back()->with('Sorry! there was a problem during the process, please try later.');
+            }
+        }
+
+        $pack->save();
+        return redirect()->route('store.mystore')->with('success', 'Pack updated successfully');
 
     }
 

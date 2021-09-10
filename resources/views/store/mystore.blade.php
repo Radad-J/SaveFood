@@ -41,7 +41,7 @@
                                 <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1"
                                                                             data-toggle="tab">About</a></li>
                                 <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2"
-                                                                            data-toggle="tab">More</a></li>
+                                                                            data-toggle="tab">Reservations</a></li>
                             </ul>
                         </div>
                         <!-- Tab panes-->
@@ -75,13 +75,17 @@
                                         </td>
                                     </tr>
                                 </table>
+                                <a class="button button-lg button-shadow-2 button-primary button-zakaria" href={{route('store.edit')}}>Edit my store</a>
                             </div>
                             <div class="tab-pane fade" id="tabs-1-2">
-                                <p></p>
+                                <ul class="footer-modern-list footer-modern-list-2 d-sm-inline-block d-md-block">
+                                    <li><a href="{{route('reservation.showResByStat', ['status' => "not claimed"])}}">Pending claim</a></li>
+                                    <li><a href="{{route('reservation.showResByStat', ['status' => "claimed"])}}">Claimed</a></li>
+                                    <li><a href="{{route('reservation.showResByStat', ['status' => "expired"])}}">Expired packs</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <a class="button button-lg button-shadow-2 button-primary button-zakaria" href={{route('store.edit')}}>Edit my store</a>
                 </div>
                 <div class="col-md-11 col-lg-6 col-xl-7">
                     <img class="float-right" src="{{asset('images/uploads/stores/'.$store->avatar)}}" width="400"

@@ -19,7 +19,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="py-4 px-4">
+                <div class="py-4 px-4 mt-5">
                     <div class="d-flex align-items-center justify-content-between mb-3">
                         @if($user->totalreservations)
                             <h5 class="mb-0">My reservations ({{$user->totalreservations}})</h5>
@@ -40,21 +40,31 @@
                                 <table class="table table-responsive-md">
                                     <thead>
                                     <tr>
-                                        <th scope="col">Pack name</th>
+                                        <th scope="col">Pack</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Store</th>
                                         <th scope="col">Claiming hours</th>
                                         <th scope="col">Claiming days</th>
                                         <th scope="col">To pick up</th>
+                                        <th scope="col">Ordered</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($user->reservations as $reservation)
                                         <tr>
-                                            <td>{{$reservation->title}}</td>
+                                            <td>
+                                                <a href="{{route('pack.show',$reservation->id)}}"><img width="100"
+                                                                                                       height="100"
+                                                                                                       src="{{asset('images/uploads/packs/'.$reservation->picture)}}"/></a>
+                                                <p>{{$reservation->title}}</p>
+                                            </td>
                                             <td>{{$reservation->quantity}}</td>
-                                            <td>{{$reservation->status}}</td>
+                                            @if($reservation->status === "claimed")
+                                                <td>{{$reservation->status}} ({{$diff = Carbon\Carbon::parse($reservation->updated_at)->diffForHumans()}})</td>
+                                            @else
+                                                <td>{{$reservation->status}}</td>
+                                            @endif
                                             <td>{{$reservation->name}}</td>
                                             <td>From {{$reservation->available_hour_from}}
                                                 to {{$reservation->available_hour_to}}</td>
@@ -63,6 +73,7 @@
                                             <td>{{$reservation->building_number}}, {{$reservation->street_name}}
                                                 , {{$reservation->postal_code}}, {{$reservation->city}}
                                                 , {{$reservation->country}}</td>
+                                            <td>{{ $diff = Carbon\Carbon::parse($reservation->created_at)->diffForHumans() }}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>

@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\PackController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\StoreController;
@@ -94,3 +95,7 @@ Route::post('/mystore/newpack/store', [PackController::class, 'store'])->name('p
 Route::get('/mystore/newpack/', [PackController::class, 'create'])->name('pack.create');
 Route::get('/mystore/editpack/{id}', [PackController::class, 'edit'])->where('id', '[0-9]+')->name('pack.edit');
 Route::patch('/mystore/updatepack/{id}', [PackController::class, 'update'])->where('id', '[0-9]+')->name('pack.update');
+
+//Store Reservations
+Route::get('/mystore/reservations', [ReservationController::class, 'showReservations'])->name('reservation.showResByStat');
+Route::post('/mystore/reservations/{id}/update', [ReservationController::class, 'changeStatus'])->where('id', '[0-9]+')->name('reservation.changeStatus');

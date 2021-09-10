@@ -59,7 +59,7 @@ class StoreController extends Controller
         if (!is_null(Auth()->user()->store_id)) {
 
             $store = Store::find(Auth()->user()->store_id);
-            $packs = Pack::where('store_id', Auth()->user()->store_id)->paginate(9);
+            $packs = Pack::where('store_id', Auth()->user()->store_id)->orderBy('created_at','desc')->paginate(9);
 
 
             return view('store.mystore', ['store' => $store, 'packs' => $packs]);
