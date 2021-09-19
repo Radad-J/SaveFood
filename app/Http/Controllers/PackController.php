@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Pack;
 use App\Models\Store;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
@@ -53,8 +54,8 @@ class PackController extends Controller
                     'stock' => ['required', 'integer', 'min:1', 'max:255'],
                     'price' => ['required', 'numeric', 'between:0,99.99', 'min:0', 'max:100'],
                     'sale_price' => ['sometimes', 'nullable', 'numeric', 'between:0,99.99', 'min:0', 'max:100', 'lt:price'],
-                    'available_day_from' => ['required', 'date', 'date_format:Y-m-d', 'before:available_day_to', 'after:today'],
-                    'available_day_to' => ['required', 'date', 'date_format:Y-m-d', 'after:available_day_from'],
+                    'available_day_from' => ['required', 'date', 'date_format:Y-m-d', 'after_or_equal:today'],
+                    'available_day_to' => ['required', 'date', 'date_format:Y-m-d', 'after_or_equal:available_day_from'],
                     'available_hour_from' => ['date_format:H:i', 'required', 'string'],
                     'available_hour_to' => ['date_format:H:i', 'required', 'string', 'after:available_hour_from'],
                     'picture' => ['sometimes', 'nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
@@ -150,6 +151,8 @@ class PackController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $yesterday = Carbon::yesterday();
+
         $this->validate(request(), [
             'title' => ['required', 'unique:stores,name', 'string', 'max:255'],
             'categories' => ['required', 'array', 'min:1', 'max:4'],
@@ -158,8 +161,8 @@ class PackController extends Controller
             'stock' => ['required', 'integer', 'min:1', 'max:255'],
             'price' => ['required', 'numeric', 'between:0,99.99', 'min:0', 'max:100'],
             'sale_price' => ['sometimes', 'nullable', 'numeric', 'between:0,99.99', 'min:0', 'max:100', 'lt:price'],
-            'available_day_from' => ['required', 'date', 'date_format:Y-m-d', 'before:available_day_to', 'after:today'],
-            'available_day_to' => ['required', 'date', 'date_format:Y-m-d', 'after:available_day_from'],
+            'available_day_from' => ['required', 'date', 'date_format:Y-m-d', 'after_or_equal:today'],
+            'available_day_to' => ['required', 'date', 'date_format:Y-m-d', 'after_or_equal:available_day_from'],
             'available_hour_from' => ['date_format:H:i:s', 'required', 'string'],
             'available_hour_to' => ['date_format:H:i:s', 'required', 'string', 'after:available_hour_from'],
             'picture' => ['sometimes', 'nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],

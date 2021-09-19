@@ -115,7 +115,7 @@
                                             <div class="form-wrap">
                                                 <input id="sale_price" value="{{old('sale_price')}}"
                                                        class="form-input form-control @error('sale_price') is-invalid @enderror"
-                                                       name="sale_price" required
+                                                       name="sale_price"
                                                        data-constraints="@Numeric">
                                                 <label for="sale_price"
                                                        class="form-label">{{ __('Sale price (Optional)') }}</label>
