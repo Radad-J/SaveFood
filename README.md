@@ -49,4 +49,4 @@ php artisan serve
 You're all set !
 
 ## Licenses
-DevsToHire is an application licensed under the [MIT license](https://opensource.org/licenses/MIT).
+SaveFood is an application licensed under the [MIT license](https://opensource.org/licenses/MIT).
