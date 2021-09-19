@@ -354,9 +354,9 @@
         </div>
     </section>
     <!-- New Flavors-->
-    <section class="section section-xxl bg-default">
+    <section class="section section-xxl bg-default" id="featuredPacks">
         <div class="container">
-            <h2 class="text-transform-capitalize wow fadeScale">Featured Products</h2>
+            <h2 class="text-transform-capitalize wow fadeScale">Featured Packs</h2>
             <div class="row row-lg row-30 row-lg-50">
 
                 @foreach($featuredPacks as $featuredpack)
@@ -476,7 +476,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7 col-xl-6">
+                <div class="col-md-7 col-xl-6" id="whyUs">
                     <h2 class="text-transform-capitalize wow fadeInRight">Why choose SaveFood?</h2>
                     <!-- Bootstrap collapse-->
                     <div class="card-group-custom card-group-corporate" id="accordion1" role="tablist"
@@ -603,7 +603,7 @@
         </div>
     </section>
     <!-- What People Say-->
-    <section class="section section-xxl bg-image-1">
+    <section class="section section-xxl bg-image-1" id="testimonials">
         <div class="container">
             <h2 class="text-transform-capitalize wow fadeScale">What People Say</h2>
             <div class="row row-sm row-30 justify-content-center">

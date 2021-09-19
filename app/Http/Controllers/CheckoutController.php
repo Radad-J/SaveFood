@@ -53,7 +53,7 @@ class CheckoutController extends Controller
 
             \Cart::clear();
 
-            return redirect()->route('welcome')->with('success', 'The payment was successful !');
+            return redirect()->route('welcome')->with('success', 'The payment was successful, you can find your order details in your profile (reservations section).');
         } catch (\Exception $e) {
             return redirect()->route('welcome')->with('error', 'There was a problem with the payment : ' . $e->getMessage());
         }

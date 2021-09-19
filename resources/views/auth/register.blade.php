@@ -10,7 +10,6 @@
                         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <!-- register.blade.php -->
-
                             <div class="form-group row">
                                 <label for="avatar"
                                        class="col-md-4 col-form-label text-md-right">{{ __('Avatar(optional)') }}</label>
@@ -83,7 +82,33 @@
                                            name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
-
+                            <div class="form-group row">
+                                <div class="mx-auto col-sm-6 col-md-5 col-lg-8">
+                                    <h6 class="aside-title">Terms & Conditions</h6>
+                                    <ul class="list-shop-filter">
+                                        <li>
+                                            <label class="checkbox-inline">
+                                                <input
+                                                    class="form-input form-control @error('age') is-invalid @enderror"
+                                                    name="age"
+                                                    value="age"
+                                                    type="checkbox"
+                                                    checked="1" >I certify that i have more than 18 years old
+                                            </label>
+                                        </li>
+                                        <li>
+                                            <label class="checkbox-inline">
+                                                <input
+                                                    class="form-input form-control @error('terms-conditions') is-invalid @enderror"
+                                                    name="terms-conditions"
+                                                    value="terms-conditions"
+                                                    type="checkbox"
+                                                    checked="1" >I agree with the <a href="#">terms & conditions</a>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

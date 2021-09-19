@@ -7,10 +7,10 @@
                 <div class="card my-4">
                     <div class="card-header">{{ __('Create your store') }}</div>
                     <div class="card-body">
+                        <!-- Create form -->
                         <form method="post" action="{{ route('store.store') }}" enctype="multipart/form-data">
                         @csrf
-                        <!-- register.blade.php -->
-
+                            <!-- Avatar-->
                             <div class="form-group row">
                                 <label for="avatar"
                                        class="col-md-4 col-form-label text-md-right">{{ __('Avatar(optional)') }}</label>
@@ -24,6 +24,7 @@
                                 </span>
                                 @enderror
                             </div>
+                            <!-- Name -->
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -39,16 +40,15 @@
                                     @enderror
                                 </div>
                             </div>
-
+                            <!-- Website -->
                             <div class="form-group row">
                                 <label for="website"
                                        class="col-md-4 col-form-label text-md-right">{{ __('Website') }}</label>
-
                                 <div class="col-md-6">
                                     <input id="website" type="url"
                                            class="form-control @error('website') is-invalid @enderror" name="website"
                                            value="{{ old('website') }}" required
-                                           placeholder="https://example.com" >
+                                           placeholder="https://example.com">
 
                                     @error('website')
                                     <span class="invalid-feedback" role="alert">
@@ -102,7 +102,8 @@
 
                                 <div class="col-md-6">
                                     <input id="gsm" type="text"
-                                           class="form-control @error('postal_code') is-invalid @enderror" name="postal_code"
+                                           class="form-control @error('postal_code') is-invalid @enderror"
+                                           name="postal_code"
                                            value="{{ old('postal_code') }}" placeholder="Ex: 1070" required>
 
                                     @error('postal_code')
@@ -119,7 +120,8 @@
 
                                 <div class="col-md-6">
                                     <input id="street_name" type="text"
-                                           class="form-control @error('street_name') is-invalid @enderror" name="street_name"
+                                           class="form-control @error('street_name') is-invalid @enderror"
+                                           name="street_name"
                                            value="{{ old('street_name') }}" placeholder="Ex: Rue Wayez" required>
 
                                     @error('street_name')
@@ -136,8 +138,10 @@
 
                                 <div class="col-md-6">
                                     <input id="building_number" type="text"
-                                           class="form-control @error('building_number') is-invalid @enderror" name="building_number"
-                                           value="{{ old('building_number') }}" placeholder="5" required autocomplete="building_number">
+                                           class="form-control @error('building_number') is-invalid @enderror"
+                                           name="building_number"
+                                           value="{{ old('building_number') }}" placeholder="5" required
+                                           autocomplete="building_number">
 
                                     @error('building_number')
                                     <span class="invalid-feedback" role="alert">

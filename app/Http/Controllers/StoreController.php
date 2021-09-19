@@ -116,9 +116,10 @@ class StoreController extends Controller
             if ($request->hasfile('avatar')) {
                 $avatar = $request->file('avatar');
 
+                //Give a new name to the file
                 $filename = time() . '.' . $avatar->getClientOriginalExtension();
 
-                //Implement check here to create directory if not exist already
+                //Implement check here to create directory if does not exist already
                 Image::make($avatar)->resize(300, 300)->save(public_path('images/uploads/stores/' . $filename));
 
             } else {
@@ -145,7 +146,7 @@ class StoreController extends Controller
             }
             return redirect()->route('store.mystore')->with('success', 'Store created successfully');
         } else {
-            return redirect()->route('welcome')->with('error', 'Sorry, you need to create a store before accessing this link');
+            return redirect()->route('welcome')->with('error', 'Sorry, you already have a store');
         }
     }
 
