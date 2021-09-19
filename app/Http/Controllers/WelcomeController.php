@@ -14,7 +14,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $featuredPacks = Pack::inRandomOrder()->limit(8)->get();
+        $featuredPacks = Pack::inRandomOrder()->distinct()->limit(8)->get();
         return view('welcome', ['featuredPacks' => $featuredPacks]);
     }
 }

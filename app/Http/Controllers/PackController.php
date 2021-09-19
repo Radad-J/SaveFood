@@ -99,7 +99,7 @@ class PackController extends Controller
 
             return redirect()->route('store.mystore')->with('success', 'New pack created successfully');
         } else {
-            return redirect()->route('welcome')->with('error', 'Sorry, you already have a store.If you want to create another one please register a new account');
+            return redirect()->route('welcome')->with('error', 'Sorry, you don\'t have a store.If you want to create one please register a new account');
         }
     }
 
