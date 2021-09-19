@@ -25,7 +25,10 @@ class ShopController extends Controller
         /* Gets the total number of packs */
         $totalCountPacks = Pack::count();
 
-        return view('shop.index', ['packs' => $packs, 'packsByCat' => $packsByCat, 'totalCountPacks' => $totalCountPacks]);
+        /*Random packs*/
+        $randomPacks = Pack::inRandomOrder()->limit(3)->get();
+
+        return view('shop.index', ['packs' => $packs, 'packsByCat' => $packsByCat, 'totalCountPacks' => $totalCountPacks, 'randomPacks'=>$randomPacks]);
     }
 
     /**
@@ -45,7 +48,10 @@ class ShopController extends Controller
 
             /* Gets the total number of packs */
             $totalCountPacks = Pack::count();
-            return view('shop.index', ['packs' => $packs, 'packsByCat' => $packsByCat, 'totalCountPacks' => $totalCountPacks]);
+
+            /*Random packs*/
+            $randomPacks = Pack::inRandomOrder()->limit(3)->get();
+            return view('shop.index', ['packs' => $packs, 'packsByCat' => $packsByCat, 'totalCountPacks' => $totalCountPacks, 'randomPacks'=>$randomPacks]);
 
         } else {
             return view('shop.index');
