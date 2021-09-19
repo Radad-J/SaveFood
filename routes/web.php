@@ -41,6 +41,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/mystore/edit', [StoreController::class, 'edit'])->name('store.edit');
     Route::patch('/mystore/update', [StoreController::class, 'update'])->name('store.update');
 
+// Packs routes
+    Route::post('/mystore/newpack/store', [PackController::class, 'store'])->name('pack.store');
+    Route::get('/mystore/newpack/', [PackController::class, 'create'])->name('pack.create');
+    Route::get('/mystore/editpack/{id}', [PackController::class, 'edit'])->where('id', '[0-9]+')->name('pack.edit');
+    Route::patch('/mystore/updatepack/{id}', [PackController::class, 'update'])->where('id', '[0-9]+')->name('pack.update');
+
+//Reservations routes
+    Route::get('/mystore/reservations', [ReservationController::class, 'showReservations'])->name('reservation.showResByStat');
+    Route::post('/mystore/reservations/{id}/update', [ReservationController::class, 'changeStatus'])->where('id', '[0-9]+')->name('reservation.changeStatus');
 
     Route::get('/store', function () {
         if (!Auth::check()) {
@@ -89,13 +98,3 @@ Route::patch('/cart-updateitem', [CartController::class, 'updateitem'])->name('c
 
 //Checkout to charge customer
 Route::post('/charge', [CheckoutController::class, 'charge'])->name('checkout.charge');
-
-// Store routes
-Route::post('/mystore/newpack/store', [PackController::class, 'store'])->name('pack.store');
-Route::get('/mystore/newpack/', [PackController::class, 'create'])->name('pack.create');
-Route::get('/mystore/editpack/{id}', [PackController::class, 'edit'])->where('id', '[0-9]+')->name('pack.edit');
-Route::patch('/mystore/updatepack/{id}', [PackController::class, 'update'])->where('id', '[0-9]+')->name('pack.update');
-
-//Store Reservations
-Route::get('/mystore/reservations', [ReservationController::class, 'showReservations'])->name('reservation.showResByStat');
-Route::post('/mystore/reservations/{id}/update', [ReservationController::class, 'changeStatus'])->where('id', '[0-9]+')->name('reservation.changeStatus');
