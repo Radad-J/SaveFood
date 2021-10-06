@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ReservationsTableSeeder::class,
             CategoryPackTableSeeder::class,
             FavouritesTableSeeder::class,
+            RatingsTableSeeder::class,
         ]);
     }
 }
