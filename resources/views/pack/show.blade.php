@@ -47,14 +47,16 @@
                             </div>
                             <div class="col-4">
                                 @if($pack->favourite)
-                                    <a href="{{ route('favourite.destroy', $pack->id) }}"><i style="color:red !important;" class="material-icons mt-2">
+                                    <a href="{{ route('favourite.destroy', $pack->id) }}"><i
+                                            style="color:red !important;" class="material-icons mt-2">
                                             favorite
                                         </i></a>
-                                    @else
-                                    <a href="{{ route('favourite.add', $pack->id) }}"><i style="color:red !important;" class="material-icons mt-2">
+                                @else
+                                    <a href="{{ route('favourite.add', $pack->id) }}"><i style="color:red !important;"
+                                                                                         class="material-icons mt-2">
                                             favorite_border
                                         </i></a>
-                                    @endif
+                                @endif
                             </div>
                         </div>
 
@@ -71,12 +73,20 @@
                                 <div class="single-product-price">{{ $pack->price }}€</div>
                             @endif
                             <div class="single-product-rating">
-                                    <span class=" @if($pack->rate >= 1 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
-                                    <span class=" @if($pack->rate >= 2 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
-                                    <span class=" @if($pack->rate >= 3 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
-                                    <span class=" @if($pack->rate >= 4 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
-                                    <span class=" @if($pack->rate >= 5 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span><span>{{$pack->rate}}€</span>
+                                <span
+                                    class=" @if($pack->avgRate >= 1 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
+                                <span
+                                    class=" @if($pack->avgRate >= 2 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
+                                <span
+                                    class=" @if($pack->avgRate >= 3 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
+                                <span
+                                    class=" @if($pack->avgRate >= 4 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
+                                <span
+                                    class=" @if($pack->avgRate >= 5 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
                             </div>
+                            @if($pack->avgRate != 0 )
+                                <span style="display: inline">{{$pack->rate}}</span>
+                            @endif
                         </div>
                         <p>{{ $pack->description }}</p>
                         <hr class="hr-gray-100">
@@ -89,7 +99,6 @@
                                 to {{ \Carbon\Carbon::parse($pack->available_hour_to)->format('H:i') }}</li>
                             <li><span>Stock:</span><span>{{ $pack->stock }}</span></li>
                         </ul>
-
 
                         <form action="{{route('cart.add')}}" method="post">
                             @csrf
@@ -105,7 +114,6 @@
                                     </button>
                                 </div>
                             </div>
-
                         </form>
                         <hr class="hr-gray-100">
                         <div class="group-xs group-middle"><span class="list-social-title">Share</span>
@@ -162,52 +170,39 @@
                                 </div>
                             </div>
                         </div>
-                        <h4 class="text-transform-none font-weight-medium">Leave a Review</h4>
-                        <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="contact"
-                              method="post" action="bat/rd-mailform.php">
-                            <div class="row row-20 row-md-30">
-                                <div class="col-lg-8">
-                                    <div class="row row-20 row-md-30">
-                                        <div class="col-sm-6">
-                                            <div class="form-wrap">
-                                                <input class="form-input" id="contact-first-name-2" type="text"
-                                                       name="name" data-constraints="@Required"/>
-                                                <label class="form-label" for="contact-first-name-2">First Name</label>
-                                            </div>
+                        @if(count($pack->reviews)>0)
+                            <h4 class="text-transform-none font-weight-medium">Reviews</h4>
+                            @foreach($pack->reviews as $review)
+                                <div class="row">
+                                    <div class="col-1">
+                                        <img width="60" alt="{{$review->name}}"
+                                             src="{{asset('images/uploads/users/'.$review->avatar)}}"/>
+                                    </div>
+                                    <div class="col-11">
+
+                                        <div class="box-rating"><h5 class="mr-3"
+                                                                    style="display: inline;color:black">{{ucFirst($review->name)}}</h5>
+                                            <span
+                                                class=" @if($review->rate >= 1 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
+                                            <span
+                                                class=" @if($review->rate >= 2 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
+                                            <span
+                                                class=" @if($review->rate >= 3 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
+                                            <span
+                                                class=" @if($review->rate >= 4 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
+                                            <span
+                                                class=" @if($review->rate >= 5 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-wrap">
-                                                <input class="form-input" id="contact-last-name-2" type="text"
-                                                       name="name" data-constraints="@Required"/>
-                                                <label class="form-label" for="contact-last-name-2">Last Name</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-wrap">
-                                                <input class="form-input" id="contact-email-2" type="email" name="email"
-                                                       data-constraints="@Email @Required"/>
-                                                <label class="form-label" for="contact-email-2">E-mail</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-wrap">
-                                                <input class="form-input" id="contact-phone-2" type="text" name="phone"
-                                                       data-constraints="@Numeric"/>
-                                                <label class="form-label" for="contact-phone-2">Phone</label>
-                                            </div>
-                                        </div>
+                                        <h6>{{$review->title}}</h6>
+
+                                        @if(!is_null($review->comment))
+                                            <p>{{$review->comment}}</p>
+
+                                        @endif
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="form-wrap">
-                                        <label class="form-label" for="contact-message-2">Message</label>
-                                        <textarea class="form-input textarea-lg" id="contact-message-2" name="phone"
-                                                  data-constraints="@Required"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="button button-lg button-primary button-zakaria" type="submit">Submit</button>
-                        </form>
+                            @endforeach
+                        @endif
                     </div>
                     <div class="tab-pane fade" id="tabs-1-2">
                         <div class="single-product-info">

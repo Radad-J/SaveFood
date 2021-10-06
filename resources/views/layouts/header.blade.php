@@ -67,17 +67,22 @@
                                     <div class="cart-inline-header">
                                         <h5 class="cart-inline-title">In
                                             cart:<span>{{ (count(Cart::getContent())) }}</span> Products</h5>
-                                        <h6 class="cart-inline-title">Total price:<span> {{Cart::getTotal()}}€</span></h6>
+                                        <h6 class="cart-inline-title">Total price:<span> {{Cart::getTotal()}}€</span>
+                                        </h6>
                                     </div>
                                     <div class="cart-inline-body">
                                         @foreach(Cart::getContent() as $item)
                                             <div class="cart-inline-item">
                                                 <div class="unit unit-spacing-sm align-items-center">
-                                                    <div class="unit-left"><a class="table-cart-figure" href="{{route('pack.show', $item->id)}}"><img
-                                                                src="{{asset('images/uploads/packs/'.$item->attributes->picture)}}" alt=""
+                                                    <div class="unit-left"><a class="table-cart-figure"
+                                                                              href="{{route('pack.show', $item->id)}}"><img
+                                                                src="{{asset('images/uploads/packs/'.$item->attributes->picture)}}"
+                                                                alt=""
                                                                 width="146" height="132"/></a></div>
                                                     <div class="unit-body">
-                                                        <h6 class="cart-inline-name"><a href="{{route('pack.show', $item->id)}}">{{$item->name}}</a></h6>
+                                                        <h6 class="cart-inline-name"><a
+                                                                href="{{route('pack.show', $item->id)}}">{{$item->name}}</a>
+                                                        </h6>
                                                         <div>
                                                             <div class="group-xs group-middle">
                                                                 <div class="table-cart-stepper">
@@ -85,7 +90,8 @@
                                                                         {{$item->quantity}}
                                                                     </h6>
                                                                 </div>
-                                                                <h6 class="cart-inline-title">{{Cart::get($item->id)->getPriceSum()}}€</h6>
+                                                                <h6 class="cart-inline-title">{{Cart::get($item->id)->getPriceSum()}}
+                                                                    €</h6>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -107,7 +113,8 @@
                         @if(Auth::user())
                             <div>
                                 <ul class="rd-navbar-nav">
-                                    <li class="rd-nav-item active"><a class="rd-nav-link" href="{{route('user.profile')}}">
+                                    <li class="rd-nav-item active"><a class="rd-nav-link"
+                                                                      href="{{route('user.profile')}}">
                                             <img style="border-radius: 50%"
                                                  src="{{ asset('images/uploads/users/'.auth()->user()->avatar) }}"
                                                  alt="{{auth()->user()->name}}" width="35"
@@ -115,17 +122,23 @@
                                         </a>
                                         <ul class="rd-menu rd-navbar-dropdown">
                                             <li class="rd-dropdown-item">
-                                                <a class="rd-dropdown-link" href="{{route('logout')}}">Log out</a>
-                                            </li>
-                                            <li class="rd-dropdown-item">
 
                                                 <a class="rd-dropdown-link" href="{{route('user.profile')}}">My
                                                     profile</a>
                                             </li>
                                             <li class="rd-dropdown-item">
 
-                                                <a class="rd-dropdown-link" href="{{route('store.mystore')}}">My
-                                                    store</a>
+                                                <a class="rd-dropdown-link" href="{{route('favourite.index')}}">My
+                                                    favourites</a>
+                                            </li>
+                                            <li class="rd-dropdown-item">
+                                                @if(Auth()->user()->store_id)
+                                                    <a class="rd-dropdown-link" href="{{route('store.mystore')}}">My
+                                                        store</a>
+
+                                            @endif
+                                            <li class="rd-dropdown-item">
+                                                <a class="rd-dropdown-link" href="{{route('logout')}}">Log out</a>
                                             </li>
                                         </ul>
                                     </li>

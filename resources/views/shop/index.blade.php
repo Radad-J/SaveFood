@@ -6,8 +6,8 @@
             <div class="breadcrumbs-custom-body parallax-content context-dark">
                 <div class="container">
                     <h2 class="text-transform-capitalize breadcrumbs-custom-title">Shop</h2>
-                    <h5 class="breadcrumbs-custom-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eius <br class="d-none d-md-block">mod tempor incididunt ut labore et dolore magna aliqua.</h5>
+                    <h5 class="breadcrumbs-custom-text">Here you will find everything you are looking for!
+                        <br class="d-none d-md-block">from groceries to meals all you need in one place.</h5>
                 </div>
             </div>
         </div>
@@ -128,7 +128,7 @@
                 </div>
                 <div class="col-lg-8 col-xl-9">
                     <div class="product-top-panel group-md">
-                        <p class="product-top-panel-title">Showing 1–12 of 28 results</p>
+                        <p class="product-top-panel-title">Showing  {{$packs->withQueryString()->firstItem()}} - {{$packs->withQueryString()->lastItem()}} of {{$packs->withQueryString()->total()}} results</p>
                         <div>
                             <div class="group-sm group-middle">
                                 <div class="product-top-panel-sorting">
