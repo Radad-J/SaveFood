@@ -128,8 +128,12 @@ class PackController extends Controller
         /* Know if the pack is favourite or not*/
         $pack->favourite = Favourite::where('user_id', '=', Auth()->id())->where('pack_id', '=', $id)->exists();
 
-        /*Ratings of the pack with number format*/
-        $pack->rate = number_format(Rating::where('pack_id', '=', $id)->avg('rate'), 1);
+        /*Ratings of the pack + number format*/
+        $pack->avgRate = number_format(Rating::where('pack_id', '=', $id)->avg('rate'), 1);
+        $pack->reviews = DB::table('ratings as r')
+            ->select('u.name', 'r.rate', 'r.title', 'r.comment', 'u.avatar')
+            ->join('users as u','u.id','=','r.user_id')
+            ->where('r.pack_id','=', $id)->get();
 
         return view('pack.show', ['pack' => $pack, 'cat' => $cat, 'store' => $store, 'featuredPacks' => $featuredPacks]);
     }

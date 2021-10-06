@@ -28,8 +28,8 @@
                     <table class="table-custom table-cart">
                         <thead>
                         <tr>
-                            <th>Product picture</th>
-                            <th>Product name</th>
+                            <th>Pack picture</th>
+                            <th>Pack name</th>
                             <th>Price</th>
                         </tr>
                         </thead>
@@ -38,14 +38,18 @@
                         @foreach($packs as $pack)
                             <tr>
                                 <td><a class="table-cart-figure" href="{{route('pack.show', $pack->pack_id)}}"><img
-                                            src="{{asset('images/uploads/packs/'.$pack->picture)}}" alt=""
-                                            width="146" height="132"/></a><a class="table-cart-link"
-                                                                             href="single-product.html">{{$pack->title}}</a>
+                                            src="{{asset('images/uploads/packs/'.$pack->picture)}}" alt="{{$pack->title}}"
+                                            width="146" height="132"/></a>
                                 </td>
                                 <td>{{$pack->title}}</td>
-                                <td>{{$pack->price}}€</td>
+                                @if(is_null($pack->sale_price))
+                                    <td>{{$pack->price}}€</td>
+                                @else
+                                    <td>{{$pack->sale_price}}€</td>
+                                @endif
                                 <td>
-                                        <a href="{{ route('favourite.destroy', $pack->pack_id) }}" class="btn fa fa-trash-o"></a>
+                                    <a href="{{ route('favourite.destroy', $pack->pack_id) }}"
+                                       class="btn fa fa-trash-o"></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -56,8 +60,9 @@
                 <div class="group-xl group-justify justify-content-center justify-content-md-between">
                     <div>
                         <div class="form-button">
-                            <a href="{{ route('favourite.emptyList') }}" style="color:black" class="button button-lg button-secondary button-zakaria" type="submit">Empty
-                                    list
+                            <a href="{{ route('favourite.emptyList') }}" style="color:black"
+                               class="button button-lg button-secondary button-zakaria" type="submit">Empty
+                                list
                             </a>
                         </div>
                     </div>

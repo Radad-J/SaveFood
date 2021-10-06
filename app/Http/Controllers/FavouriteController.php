@@ -17,7 +17,7 @@ class FavouriteController extends Controller
     public function index()
     {
         $packs = DB::table('packs as p')
-            ->select('f.pack_id', 'p.title', 'p.price', 'p.picture')
+            ->select('f.pack_id', 'p.title', 'p.sale_price', 'p.price', 'p.picture')
             ->join('favourites as f','p.id','=','f.pack_id')
             ->where('f.user_id','=', Auth()->id())
             ->get();
