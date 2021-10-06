@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{asset("css/bootstrap.css")}}">
     <link rel="stylesheet" href="{{asset("css/fonts.css")}}">
     <link rel="stylesheet" href="{{asset("css/style.css")}}">
+    <!-- CDN material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>.ie-panel {
             display: none;
             background: #212121;
@@ -27,6 +29,7 @@
         html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {
             display: block;
         }</style>
+
 </head>
 <body>
 <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img

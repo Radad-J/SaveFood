@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactusController;
+use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\PackController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
@@ -50,6 +51,13 @@ Route::group(['middleware' => 'auth'], function () {
 //Reservations routes
     Route::get('/mystore/reservations', [ReservationController::class, 'showReservations'])->name('reservation.showResByStat');
     Route::post('/mystore/reservations/{id}/update', [ReservationController::class, 'changeStatus'])->where('id', '[0-9]+')->name('reservation.changeStatus');
+
+
+//Favourites routes
+    Route::get('/myFavourites', [FavouriteController::class, 'index'])->name('favourite.index');
+    Route::get('/myFavourites/empty', [FavouriteController::class, 'emptyList'])->name('favourite.emptyList');
+    Route::get('/pack/{id}/deletefavourite', [FavouriteController::class, 'destroy'])->where('id', '[0-9]+')->name('favourite.destroy');
+    Route::get('/pack/{id}/addfavourite', [FavouriteController::class, 'add'])->where('id', '[0-9]+')->name('favourite.add');
 
     Route::get('/store', function () {
         if (!Auth::check()) {
@@ -98,3 +106,4 @@ Route::patch('/cart-updateitem', [CartController::class, 'updateitem'])->name('c
 
 //Checkout to charge customer
 Route::post('/charge', [CheckoutController::class, 'charge'])->name('checkout.charge');
+
