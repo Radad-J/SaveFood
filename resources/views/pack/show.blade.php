@@ -41,7 +41,23 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="single-product">
-                        <h3 class="text-transform-none font-weight-medium">{{ $pack->title }}</h3>
+                        <div class="row">
+                            <div class="col-8">
+                                <h3 class="text-transform-none font-weight-medium">{{ $pack->title }}</h3>
+                            </div>
+                            <div class="col-4">
+                                @if($pack->favourite)
+                                    <a href="{{ route('favourite.destroy', $pack->id) }}"><i style="color:red !important;" class="material-icons mt-2">
+                                            favorite
+                                        </i></a>
+                                    @else
+                                    <a href="{{ route('favourite.add', $pack->id) }}"><i style="color:red !important;" class="material-icons mt-2">
+                                            favorite_border
+                                        </i></a>
+                                    @endif
+                            </div>
+                        </div>
+
                         <ul>
                             <li>{{implode(', ',$cat)}}.</li>
                         </ul>
@@ -54,9 +70,13 @@
                             @else
                                 <div class="single-product-price">{{ $pack->price }}€</div>
                             @endif
-                            <div class="single-product-rating"><span class="icon mdi mdi-star"></span><span
-                                    class="icon mdi mdi-star"></span><span class="icon mdi mdi-star"></span><span
-                                    class="icon mdi mdi-star"></span><span class="icon mdi mdi-star-half"></span></div>
+                            <div class="single-product-rating">
+                                    <span class=" @if($pack->rate >= 1 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
+                                    <span class=" @if($pack->rate >= 2 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
+                                    <span class=" @if($pack->rate >= 3 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
+                                    <span class=" @if($pack->rate >= 4 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span>
+                                    <span class=" @if($pack->rate >= 5 ) icon mdi mdi-star @else()icon mdi mdi-star-outline @endif"></span><span>{{$pack->rate}}€</span>
+                            </div>
                         </div>
                         <p>{{ $pack->description }}</p>
                         <hr class="hr-gray-100">
@@ -71,18 +91,22 @@
                         </ul>
 
 
-                            <form action="{{route('cart.add')}}" method="post">
-                                @csrf
-                                <div class="group-xs group-middle mb-3">
+                        <form action="{{route('cart.add')}}" method="post">
+                            @csrf
+                            <div class="group-xs group-middle mb-3">
                                 <div class="product-stepper">
                                     <input type="hidden" name="pack_id" value="{{$pack->id}}">
-                                    <input class="form-input" type="number" name="quantity" data-zeros="true" value="1" min="1" max="1000">
+                                    <input class="form-input" type="number" name="quantity" data-zeros="true" value="1"
+                                           min="1" max="1000">
                                 </div>
-                                <div><button class="button button-lg button-primary button-zakaria" type="submit">Add to cart</button>
+                                <div>
+                                    <button class="button button-lg button-primary button-zakaria" type="submit">Add to
+                                        cart
+                                    </button>
                                 </div>
-                                </div>
+                            </div>
 
-                            </form>
+                        </form>
                         <hr class="hr-gray-100">
                         <div class="group-xs group-middle"><span class="list-social-title">Share</span>
                             <div>
@@ -123,11 +147,7 @@
                                         <div>
                                             <div class="group-xs group-middle">
                                                 <h5 class="box-comment-author"><a href="#">{{$store->name}}</a></h5>
-                                                <div class="box-rating"><span class="icon mdi mdi-star"></span><span
-                                                        class="icon mdi mdi-star"></span><span
-                                                        class="icon mdi mdi-star"></span><span
-                                                        class="icon mdi mdi-star"></span><span
-                                                        class="icon mdi mdi-star-half"></span></div>
+
                                             </div>
                                         </div>
                                         <div class="box-comment-time">
