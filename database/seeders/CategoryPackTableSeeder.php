@@ -25,6 +25,10 @@ class CategoryPackTableSeeder extends Seeder
                 'pack_id' => 1,
             ],
             [
+                'category_id' => 3,
+                'pack_id' => 2,
+            ],
+            [
                 'category_id' => 4,
                 'pack_id' => 3,
             ],

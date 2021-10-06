@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Favourite;
 use App\Models\Pack;
+use App\Models\Rating;
 use App\Models\Store;
 use App\Models\User;
 use Carbon\Carbon;
@@ -111,6 +113,7 @@ class PackController extends Controller
      */
     public function show($id)
     {
+        /*Get all the categories of the packs*/
         $pack = Pack::find($id);
         $categories = Pack::find($id)->categories;
         $cat = [];
@@ -118,8 +121,15 @@ class PackController extends Controller
             $cat[] = $category->category;
         }
 
+        /*Featured packs to show*/
         $featuredPacks = Pack::inRandomOrder()->limit(4)->get();
         $store = Store::find($pack->store_id);
+
+        /* Know if the pack is favourite or not*/
+        $pack->favourite = Favourite::where('user_id', '=', Auth()->id())->where('pack_id', '=', $id)->exists();
+
+        /*Ratings of the pack with number format*/
+        $pack->rate = number_format(Rating::where('pack_id', '=', $id)->avg('rate'), 1);
 
         return view('pack.show', ['pack' => $pack, 'cat' => $cat, 'store' => $store, 'featuredPacks' => $featuredPacks]);
     }

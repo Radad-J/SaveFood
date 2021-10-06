@@ -53,12 +53,24 @@ class Pack extends Model
     }
 
     /**
+     * Get the favourites for the user.
+     */
+    public function favourites()
+    {
+        return $this->hasMany(Favourite::class);
+    }
+
+    /**
+     * Get the favourites for the user.
+     */
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
+    /**
      * Gets the packs grouped by category.
      */
-    /* select COUNT(category_pack.pack_id), categories.category
-    FROM category_pack join categories on category_pack.category_id = categories.id
-    GROUP BY category_id;
-    */
     public static function getPacksByCategory()
     {
         return DB::table('category_pack as cp')
