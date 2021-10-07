@@ -28,7 +28,7 @@ class ShopController extends Controller
         /*Random packs*/
         $randomPacks = Pack::inRandomOrder()->distinct()->limit(3)->get();
 
-        return view('shop.index', ['packs' => $packs, 'packsByCat' => $packsByCat, 'totalCountPacks' => $totalCountPacks, 'randomPacks'=>$randomPacks]);
+        return view('shop.index', ['packs' => $packs, 'packsByCat' => $packsByCat, 'totalCountPacks' => $totalCountPacks, 'randomPacks' => $randomPacks]);
     }
 
     /**
@@ -39,6 +39,15 @@ class ShopController extends Controller
     public function search(Request $request)
     {
         if ($request->isMethod('get') && !is_null($request)) {
+            $this->validate(request(), [
+                'sortBy' => ['sometimes', 'string', 'in:newnessAsc,newnessDesc,priceAsc,priceDesc,alphabeticalAsc,alphabeticalDesc'],
+                'searchCriteria' => ['sometimes', 'string', 'in:price,title,category'],
+                'search' => ['sometimes', 'string', 'min:3', 'max:25'],
+                'categories' => ['sometimes', 'array', 'in:All,Meals,Groceries,Other,Bread & pastries'],
+                'min' => ['sometimes', 'integer', 'min:0', 'max:50', 'required_with:min', 'lt:max'],
+                'max' => ['sometimes', 'integer', 'min:0', 'max:50', 'required_with:max', 'gt:min'],
+            ]);
+
             $packs = is_null($request->searchCriteria)
                 ? Shop::searchShop($request, null, true)
                 : Shop::searchShop($request, $request->searchCriteria);
@@ -51,7 +60,7 @@ class ShopController extends Controller
 
             /*Random packs*/
             $randomPacks = Pack::inRandomOrder()->distinct()->limit(3)->get();
-            return view('shop.index', ['packs' => $packs, 'packsByCat' => $packsByCat, 'totalCountPacks' => $totalCountPacks, 'randomPacks'=>$randomPacks]);
+            return view('shop.index', ['packs' => $packs, 'packsByCat' => $packsByCat, 'totalCountPacks' => $totalCountPacks, 'randomPacks' => $randomPacks]);
 
         } else {
             return view('shop.index');
