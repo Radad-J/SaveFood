@@ -14,7 +14,8 @@
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
-        "stripe/stripe-php": "^7.95"
+        "stripe/stripe-php": "^7.95",
+      "ext-cassandra": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
