@@ -39,13 +39,16 @@
                                     </li>
                                     @foreach($packsByCat as $packByCat)
                                         <li>
-                                            <label class="checkbox-inline">
+                                            <label class="checkbox-inline form-check-label">
                                                 <input name="categories[]" value="{{$packByCat->category}}"
                                                        type="checkbox">{{$packByCat->category}}
                                             </label><span class="list-shop-filter-number">({{$packByCat->total}})</span>
                                         </li>
                                     @endforeach
                                 </ul>
+                                @error('categories')
+                                <p style="color:red"> {{ $message }} </p>
+                                @enderror
                                 <button style="width:100% !important;padding:0px 10px !important;"
                                         class="button button-sm button-primary button-zakaria" type="submit">Filter
                                 </button>
@@ -63,6 +66,12 @@
                                      data-input-2=".rd-range-input-value-2"></div>
                                 <div class="group-xs group-justify">
                                     <div>
+                                        @error('min')
+                                        <p style="color:red"> {{ $message }} </p>
+                                        @enderror
+                                        @error('max')
+                                        <p style="color:red"> {{ $message }} </p>
+                                        @enderror
                                         <button class="button button-sm button-primary button-zakaria" type="submit">
                                             Filter
                                         </button>
@@ -89,9 +98,18 @@
                                 @csrf
                                 <div class="form-wrap">
                                     <input type="hidden" value="title" name="searchCriteria">
-                                    <input class="form-input" id="search-form" type="text" name="search"
+                                    <input class="form-input form-control @error('search') is-invalid @enderror"
+                                           id="search-form" type="text" name="search"
                                            autocomplete="off">
                                     <label class="form-label" for="search-form">Search in shop...</label>
+                                    @error('search')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                    @error('searchCriteria')
+                                    <p style="color:red"> {{ $message }} </p>
+                                    @enderror
                                     <button class="button-search fl-bigmug-line-search74" type="submit"></button>
                                 </div>
                             </form>
@@ -101,26 +119,29 @@
                             <div class="row row-10 row-lg-20 gutters-10">
                                 @foreach($randomPacks as $randomPack)
 
-                                <div class="col-4 col-sm-6 col-md-12">
-                                    <!-- Product Minimal-->
-                                    <article class="product-minimal">
-                                        <div class="unit unit-spacing-sm flex-column flex-md-row align-items-center">
-                                            <div class="unit-left"><a class="product-minimal-figure"
-                                                                      href="single-product.html"><img
-                                                        src="{{asset('images/uploads/packs/'.$randomPack->picture)}}" alt="{{$randomPack->title}}" width="20"
-                                                        height="20" style="width:110px"/></a></div>
-                                            <div class="unit-body">
-                                                <p class="product-minimal-title"><a
-                                                        href="single-product.html">{{$randomPack->title}}</a></p>
-                                                @if(is_null($randomPack->sold_price))
-                                                <p class="product-minimal-price">{{$randomPack->price}}€</p>
-                                                @else
-                                                    <p class="product-minimal-price">{{$randomPack->sold_price}}€</p>
+                                    <div class="col-4 col-sm-6 col-md-12">
+                                        <!-- Product Minimal-->
+                                        <article class="product-minimal">
+                                            <div
+                                                class="unit unit-spacing-sm flex-column flex-md-row align-items-center">
+                                                <div class="unit-left"><a class="product-minimal-figure"
+                                                                          href="{{route('pack.show', $randomPack->id)}}"><img
+                                                            src="{{asset('images/uploads/packs/'.$randomPack->picture)}}"
+                                                            alt="{{$randomPack->title}}" width="20"
+                                                            height="20" style="width:110px"/></a></div>
+                                                <div class="unit-body">
+                                                    <p class="product-minimal-title"><a
+                                                            href="single-product.html">{{$randomPack->title}}</a></p>
+                                                    @if(is_null($randomPack->sold_price))
+                                                        <p class="product-minimal-price">{{$randomPack->price}}€</p>
+                                                    @else
+                                                        <p class="product-minimal-price">{{$randomPack->sold_price}}
+                                                            €</p>
                                                     @endif
+                                                </div>
                                             </div>
-                                        </div>
-                                    </article>
-                                </div>
+                                        </article>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -128,7 +149,9 @@
                 </div>
                 <div class="col-lg-8 col-xl-9">
                     <div class="product-top-panel group-md">
-                        <p class="product-top-panel-title">Showing  {{$packs->withQueryString()->firstItem()}} - {{$packs->withQueryString()->lastItem()}} of {{$packs->withQueryString()->total()}} results</p>
+                        <p class="product-top-panel-title">Showing {{$packs->withQueryString()->firstItem()}}
+                            - {{$packs->withQueryString()->lastItem()}} of {{$packs->withQueryString()->total()}}
+                            results</p>
                         <div>
                             <div class="group-sm group-middle">
                                 <div class="product-top-panel-sorting">
@@ -158,9 +181,10 @@
                                 <!-- Product-->
                                 <article class="product">
                                     <div class="product-body">
-                                        <div class="product-figure"><img
-                                                src={{ asset('images/uploads/packs/'.$pack->picture) }} alt="{{ $pack->title }}"
-                                                width="189" height="166"/>
+                                        <div class="product-figure"><a class="product-minimal-figure"
+                                                                       href="{{route('pack.show', $pack->id)}}"><img
+                                                    src={{ asset('images/uploads/packs/'.$pack->picture) }} alt="{{ $pack->title }}"
+                                                    width="189" height="166"/></a>
                                         </div>
                                         <h5 class="product-title"><a
                                                 href="{{ route('pack.show', $pack->id) }}">{{ $pack->title }}</a>
@@ -178,11 +202,10 @@
                                                 class="button button-secondary button-zakaria fl-bigmug-line-search74"
                                                 href="{{ route('pack.show', $pack->id) }}"></a></div>
 
-
                                         <form method="post" action="{{route('cart.add')}}">
                                             @csrf
                                             <input type="hidden" name="pack_id" value="{{$pack->id}}">
-                                            <div class="product-button">
+                                            <div class="product-button ml-3">
                                                 <button
                                                     class="button button-primary button-zakaria fl-bigmug-line-shopping202"
                                                     type="submit" name="button-cart"></button>

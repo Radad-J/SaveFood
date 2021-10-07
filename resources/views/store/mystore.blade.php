@@ -15,9 +15,8 @@
         <div class="breadcrumbs-custom-footer">
             <div class="container">
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#">Pages</a></li>
-                    <li class="active">About Us</li>
+                    <li><a href="{{route('welcome')}}">Home</a></li>
+                    <li class="active"><a href="{{route('store.mystore')}}">My Store</a></li>
                 </ul>
             </div>
         </div>
@@ -50,7 +49,7 @@
                                 <table>
                                     <tr>
                                         <th>
-                                            Website :
+                                            <span class="icon mdi mdi-web mr-2"></span> Website :
                                         </th>
                                         <td>
                                             {{$store->website}}
@@ -58,7 +57,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            GSM :
+                                            <span class="icon mdi mdi-phone mr-2"></span> GSM :
                                         </th>
                                         <td>
                                             {{$store->GSM}}
@@ -66,7 +65,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            Adress :
+                                            <span class="icon mdi mdi-map-marker mr-2"></span>Adress :
                                         </th>
                                         <td>
                                             {{$store->building_number}}, {{$store->street_name}}
@@ -75,13 +74,17 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <a class="button button-lg button-shadow-2 button-primary button-zakaria" href={{route('store.edit')}}>Edit my store</a>
+                                <a class="button button-lg button-shadow-2 button-primary button-zakaria"
+                                   href={{route('store.edit')}}>Edit my store</a>
                             </div>
                             <div class="tab-pane fade" id="tabs-1-2">
                                 <ul class="footer-modern-list footer-modern-list-2 d-sm-inline-block d-md-block">
-                                    <li><a href="{{route('reservation.showResByStat', ['status' => "not claimed"])}}">Pending claim</a></li>
-                                    <li><a href="{{route('reservation.showResByStat', ['status' => "claimed"])}}">Claimed</a></li>
-                                    <li><a href="{{route('reservation.showResByStat', ['status' => "expired"])}}">Expired packs</a></li>
+                                    <li><a href="{{route('reservation.showResByStat', ['status' => "not claimed"])}}">Pending
+                                            claim</a></li>
+                                    <li><a href="{{route('reservation.showResByStat', ['status' => "claimed"])}}">Claimed</a>
+                                    </li>
+                                    <li><a href="{{route('reservation.showResByStat', ['status' => "expired"])}}">Expired
+                                            packs</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -118,7 +121,8 @@
                     </form>
                 </div>
                 <div class="col-sm-4 col-md-4 col-lg-2 col-xl-2">
-                    <a class="button button button-shadow-2 button-primary button-zakaria" href={{route('pack.create')}}>Add new product</a>
+                    <a class="button button button-shadow-2 button-primary button-zakaria"
+                       href={{route('pack.create')}}>Add new product</a>
                 </div>
             </div>
             <div class="row row-30 row-lg-50">

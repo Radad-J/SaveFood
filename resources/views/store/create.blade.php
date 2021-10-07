@@ -10,18 +10,20 @@
                         <!-- Create form -->
                         <form method="post" action="{{ route('store.store') }}" enctype="multipart/form-data">
                         @csrf
-                            <!-- Avatar-->
-                            <div class="form-group row">
+                        <!-- Avatar-->
+                            <div class="image-upload text-center">
                                 <label for="avatar"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Avatar(optional)') }}</label>
+                                       class="col-md-4 col-form-label text-center">{{ __('Avatar(optional)') }}
+                                    <img
+                                        style="border:3px lightgray solid;border-radius: 10px;cursor: pointer;padding: 5px"
+                                        width="200" height="200" id="output"
+                                        src="{{ asset('images/uploads/stores/store_avatar.png') }}"/></label>
 
-                                <div class="col-md-6">
-                                    <input id="avatar" type="file" class="form-control" name="avatar">
-                                </div>
+                                <input id="avatar" type="file" class="form-control" name="avatar"
+                                       onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+
                                 @error('avatar')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                </span>
+                                <p style="color:red"> {{ $message }} </p>
                                 @enderror
                             </div>
                             <!-- Name -->

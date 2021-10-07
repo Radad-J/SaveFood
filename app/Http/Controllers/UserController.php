@@ -129,8 +129,6 @@ class UserController extends Controller
                 //Implement check here to create directory if not exist already
                 Image::make($avatar)->resize(300, 300)->save(public_path('images/uploads/users/' . $filename));
                 $user->avatar = $filename;
-            } else {
-                $user->avatar = 'default_avatar.png';
             }
 
             $user->name = request('name');

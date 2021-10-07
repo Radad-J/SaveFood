@@ -11,17 +11,20 @@
                         @csrf
                         {{ method_field('patch') }}
                         <!-- edit.blade.php -->
-                            <div class="form-group row">
+                            <div class="image-upload text-center">
                                 <label for="avatar"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Avatar(optional)') }}</label>
+                                       class="col-md-4 col-form-label text-center">{{ __('Avatar(optional)') }}
+                                    <img
+                                        style="border:3px lightgray solid;border-radius: 10px;cursor: pointer;padding: 5px"
+                                        class="text-center @error('avatar') is-invalid @enderror"
+                                        width="200" height="200" id="output"
+                                        src="{{ asset('images/uploads/stores/'.$store->avatar ) }}"/></label>
 
-                                <div class="col-md-6">
-                                    <input id="avatar" value="{{ $store->avatar }}" type="file" class="form-control" name="avatar">
-                                </div>
+                                <input id="avatar" value="{{ $store->avatar }}" type="file" class="form-control"
+                                       name="avatar"
+                                       onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                 @error('avatar')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                </span>
+                                <p style="color:red"> {{ $message }} </p>
                                 @enderror
                             </div>
                             <div class="form-group row">
@@ -48,7 +51,7 @@
                                     <input id="website" type="url"
                                            class="form-control @error('website') is-invalid @enderror" name="website"
                                            value="{{ $store->website }}"
-                                           placeholder="https://example.com" >
+                                           placeholder="https://example.com">
 
                                     @error('website')
                                     <span class="invalid-feedback" role="alert">
@@ -102,7 +105,8 @@
 
                                 <div class="col-md-6">
                                     <input id="gsm" type="text"
-                                           class="form-control @error('postal_code') is-invalid @enderror" name="postal_code"
+                                           class="form-control @error('postal_code') is-invalid @enderror"
+                                           name="postal_code"
                                            value="{{ $store->postal_code }}" placeholder="Ex: 1070" required>
 
                                     @error('postal_code')
@@ -119,7 +123,8 @@
 
                                 <div class="col-md-6">
                                     <input id="street_name" type="text"
-                                           class="form-control @error('street_name') is-invalid @enderror" name="street_name"
+                                           class="form-control @error('street_name') is-invalid @enderror"
+                                           name="street_name"
                                            value="{{ $store->street_name }}" placeholder="Ex: Rue Wayez" required>
 
                                     @error('street_name')
@@ -136,8 +141,10 @@
 
                                 <div class="col-md-6">
                                     <input id="building_number" type="text"
-                                           class="form-control @error('building_number') is-invalid @enderror" name="building_number"
-                                           value="{{ $store->building_number }}" placeholder="5" required autocomplete="building_number">
+                                           class="form-control @error('building_number') is-invalid @enderror"
+                                           name="building_number"
+                                           value="{{ $store->building_number }}" placeholder="5" required
+                                           autocomplete="building_number">
 
                                     @error('building_number')
                                     <span class="invalid-feedback" role="alert">
@@ -162,7 +169,7 @@
     </div>
 @endsection
 <script>
-    addEventListener('load', function() {
+    addEventListener('load', function () {
         //Get the country from the select
         let countries = document.getElementById('country');
         countries.length = 0;
@@ -214,6 +221,7 @@
 
         //Add an event onChange to select the value of the country select so we can get all the cities using the country iso code
     });
+
     function countryChange(e) {
         //Get the city from the select
         let cities = document.getElementById('city');

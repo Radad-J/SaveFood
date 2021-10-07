@@ -132,8 +132,8 @@ class PackController extends Controller
         $pack->avgRate = number_format(Rating::where('pack_id', '=', $id)->avg('rate'), 1);
         $pack->reviews = DB::table('ratings as r')
             ->select('u.name', 'r.rate', 'r.title', 'r.comment', 'u.avatar')
-            ->join('users as u','u.id','=','r.user_id')
-            ->where('r.pack_id','=', $id)->get();
+            ->join('users as u', 'u.id', '=', 'r.user_id')
+            ->where('r.pack_id', '=', $id)->get();
 
         return view('pack.show', ['pack' => $pack, 'cat' => $cat, 'store' => $store, 'featuredPacks' => $featuredPacks]);
     }
@@ -173,8 +173,8 @@ class PackController extends Controller
             'categories.*' => ['required', 'integer'],
             'description' => ['required', 'string', 'min:10', 'max:255'],
             'stock' => ['required', 'integer', 'min:1', 'max:255'],
-            'price' => ['required', 'numeric', 'between:0,99.99', 'min:0', 'max:100'],
-            'sale_price' => ['sometimes', 'nullable', 'numeric', 'between:0,99.99', 'min:0', 'max:100', 'lt:price'],
+            'price' => ['required', 'numeric', 'between:0,49.99', 'min:0.10', 'max:50'],
+            'sale_price' => ['sometimes', 'nullable', 'numeric', 'between:0,59.99', 'min:0.10', 'max:50', 'lt:price'],
             'available_day_from' => ['required', 'date', 'date_format:Y-m-d', 'after_or_equal:today'],
             'available_day_to' => ['required', 'date', 'date_format:Y-m-d', 'after_or_equal:available_day_from'],
             'available_hour_from' => ['date_format:H:i:s', 'required', 'string'],
@@ -196,8 +196,6 @@ class PackController extends Controller
             //Implement check here to create directory if not exist already
             Image::make($picture)->resize(300, 300)->save(public_path('images/uploads/packs/' . $filename));
             $pack->picture = $filename;
-        } else {
-            $pack->picture = 'default_pack.png';
         }
 
         $pack->store_id = Auth()->user()->store_id;

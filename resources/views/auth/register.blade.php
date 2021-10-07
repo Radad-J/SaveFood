@@ -10,17 +10,16 @@
                         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
                         <!-- register.blade.php -->
-                            <div class="form-group row">
+                            <div class="image-upload text-center">
                                 <label for="avatar"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('Avatar(optional)') }}</label>
+                                       class="col-md-4 col-form-label text-center">{{ __('Avatar(optional)') }}<img
+                                        style="border:3px lightgray solid;border-radius: 10px;cursor: pointer;padding: 5px"
+                                        width="200" height="200" id="output"
+                                        src="{{ asset('images/uploads/users/default_avatar.png') }}"/></label>
 
-                                <div class="col-md-6">
-                                    <input id="avatar" type="file" class="form-control" name="avatar">
-                                </div>
+                                    <input id="avatar" type="file" class="form-input form-control" name="avatar" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                 @error('avatar')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                </span>
+                                <p style="color:red"> {{ $message }} </p>
                                 @enderror
                             </div>
                             <div class="form-group row">
@@ -89,9 +88,8 @@
                                         <li>
                                             <label class="checkbox-inline">
                                                 <input
-                                                    class="form-input form-control @error('age') is-invalid @enderror"
+                                                    class="form-input form-control"
                                                     name="age"
-                                                    value="age"
                                                     type="checkbox"
                                                     checked="1" >I certify that i have more than 18 years old
                                             </label>
@@ -99,19 +97,24 @@
                                         <li>
                                             <label class="checkbox-inline">
                                                 <input
-                                                    class="form-input form-control @error('terms-conditions') is-invalid @enderror"
-                                                    name="terms-conditions"
-                                                    value="terms-conditions"
+                                                    class="form-input form-control"
+                                                    name="terms and conditions"
                                                     type="checkbox"
                                                     checked="1" >I agree with the <a href="#">terms & conditions</a>
                                             </label>
                                         </li>
                                     </ul>
+                                    @error('age')
+                                    <p style="color:red"> {{ $message }} </p>
+                                    @enderror
+                                    @error('terms_and_conditions')
+                                    <p style="color:red"> {{ $message }} </p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                <div class="col-md-4 offset-md-4">
+                                    <button type="submit" class="btn btn-primary text-center">
                                         {{ __('Register') }}
                                     </button>
                                 </div>

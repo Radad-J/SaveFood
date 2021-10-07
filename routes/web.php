@@ -107,3 +107,7 @@ Route::patch('/cart-updateitem', [CartController::class, 'updateitem'])->name('c
 //Checkout to charge customer
 Route::post('/charge', [CheckoutController::class, 'charge'])->name('checkout.charge');
 
+//Stores routes
+Route::get('store/{id}', [StoreController::class, 'show'])->where('id', '[0-9]+')->name('store.show');
+Route::get('/store/searchHome', [StoreController::class, 'searchHome'])->name('store.searchHome');
+Route::get('/stores', [StoreController::class, 'index'])->name('store.index');

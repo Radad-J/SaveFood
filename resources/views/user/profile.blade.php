@@ -9,8 +9,10 @@
                         <div class="profile mr-3"><img src="{{asset('/images/uploads/users/'.$user->avatar)}}" alt="..."
                                                        width="130" class="rounded mb-2 img-thumbnail"><a
                                 href="{{route('user.edit',$user->id)}}"
-                                class="btn btn-outline-dark btn-sm btn-block">Edit
+                                class="btn-block"
+                                style="background-color: #3cc3c1;padding:5px;color:white;border-radius: 5px">Edit
                                 profile</a></div>
+
                         <div class="media-body mb-5 text-white">
                             <h4 class="mt-0 mb-0" style="color:white">{{ucfirst($user->name)}}
                             </h4>
@@ -61,7 +63,10 @@
                                             </td>
                                             <td>{{$reservation->quantity}}</td>
                                             @if($reservation->status === "claimed")
-                                                <td>{{$reservation->status}} ({{$diff = Carbon\Carbon::parse($reservation->updated_at)->diffForHumans()}})</td>
+                                                <td>{{$reservation->status}}
+                                                    ({{$diff = Carbon\Carbon::parse($reservation->updated_at)->diffForHumans()}}
+                                                    )
+                                                </td>
                                             @else
                                                 <td>{{$reservation->status}}</td>
                                             @endif

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pack;
+use App\Models\Role;
 use App\Models\Store;
 use App\Models\User;
+use Cassandra\Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -19,7 +22,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        //
+        return view('store.index', ['stores' => DB::table('stores')->paginate(9)]);
     }
 
     /**
@@ -59,7 +62,7 @@ class StoreController extends Controller
         if (!is_null(Auth()->user()->store_id)) {
 
             $store = Store::find(Auth()->user()->store_id);
-            $packs = Pack::where('store_id', Auth()->user()->store_id)->orderBy('created_at','desc')->paginate(9);
+            $packs = Pack::where('store_id', Auth()->user()->store_id)->orderBy('created_at', 'desc')->paginate(9);
 
 
             return view('store.mystore', ['store' => $store, 'packs' => $packs]);
@@ -93,6 +96,7 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         $user = User::find(Auth()->id());
+
         //Check if the user has no store so he can create one if not redirect with message
         if (is_null($user->store_id)) {
             if ($request) {
@@ -111,40 +115,48 @@ class StoreController extends Controller
                     'building_number' => ['required', 'string'],
                 ]);
             }
+            try {
+                //Check if the user uploaded an avatar
+                if ($request->hasfile('avatar')) {
+                    $avatar = $request->file('avatar');
 
-            //Check if the user uploaded an avatar
-            if ($request->hasfile('avatar')) {
-                $avatar = $request->file('avatar');
+                    //Give a new name to the file
+                    $filename = time() . '.' . $avatar->getClientOriginalExtension();
 
-                //Give a new name to the file
-                $filename = time() . '.' . $avatar->getClientOriginalExtension();
+                    //Implement check here to create directory if does not exist already
+                    Image::make($avatar)->resize(300, 300)->save(public_path('images/uploads/stores/' . $filename));
 
-                //Implement check here to create directory if does not exist already
-                Image::make($avatar)->resize(300, 300)->save(public_path('images/uploads/stores/' . $filename));
+                } else {
+                    $filename = 'store_avatar.png';
+                }
 
-            } else {
-                $filename = 'store_avatar.png';
+                //Create the store in the db
+                $store = Store::create([
+                    'avatar' => $filename,
+                    'name' => $request->name,
+                    'website' => $request->website,
+                    'GSM' => $request->gsm,
+                    'country' => $request->country,
+                    'city' => $request->city,
+                    'postal_code' => $request->postal_code,
+                    'street_name' => $request->street_name,
+                    'building_number' => $request->building_number,
+                ]);
+
+                //Add the new id store to the users table
+                if ($user) {
+                    if ($user->role != 'Admin') {
+                        $user->store_id = $store->id;
+                        $role = Role::where('role', '=', 'Partner')->first();
+                        $user->role_id = $role->id;
+                        $user->save();
+                    }
+                }
+                return redirect()->route('store.mystore')->with('success', 'Store created successfully');
+
+            } catch (Exception $e) {
+                return redirect()->route('welcome')->with('error', 'Sorry, you already have a store');
             }
-
-            //Create the store in the db
-            $store = Store::create([
-                'avatar' => $filename,
-                'name' => $request->name,
-                'website' => $request->website,
-                'GSM' => $request->gsm,
-                'country' => $request->country,
-                'city' => $request->city,
-                'postal_code' => $request->postal_code,
-                'street_name' => $request->street_name,
-                'building_number' => $request->building_number,
-            ]);
-
-            //Add the new id store to the users table
-            if ($user) {
-                $user->store_id = $store->id;
-                $user->save();
-            }
-            return redirect()->route('store.mystore')->with('success', 'Store created successfully');
         } else {
             return redirect()->route('welcome')->with('error', 'Sorry, you already have a store');
         }
@@ -158,7 +170,24 @@ class StoreController extends Controller
      */
     public function show($id)
     {
-        //
+        $store = Store::find($id);
+        return view('store.show', ['store' => $store]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function searchHome(Request $request)
+    {
+        $this->validate(request(), [
+            'keyword' => ['required', 'string', 'min:3', 'max:25'],
+        ]);
+
+        $stores = Store::where('name', 'LIKE', "%{$request->keyword}%")->orWhere('city', 'LIKE', "%{$request->keyword}%")->paginate(9);
+        return view('store.index', ['stores' => $stores]);
     }
 
     /**
@@ -184,9 +213,9 @@ class StoreController extends Controller
         if (!is_null(Auth()->user()->store_id)) {
 
             $this->validate($request, [
-                'avatar' => ['sometimes','nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+                'avatar' => ['sometimes', 'nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
                 'name' => ['required', Rule::unique('stores', 'name')->ignore(Auth()->user()->store_id), 'string', 'max:255'],
-                'website' => ['sometimes','nullable', 'url'],
+                'website' => ['sometimes', 'nullable', 'url'],
                 'gsm' => [
                     'required',
                     'regex:/\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|[987654310]|3[9643210]|2[70]|7|1)\W*\d\W*\d\W*\d\W*\d\W*\d\W*\d\W*\d\W*\d\W*(\d{1,2})$/',
@@ -212,8 +241,6 @@ class StoreController extends Controller
                 //Implement check here to create directory if not exist already
                 Image::make($avatar)->resize(300, 300)->save(public_path('images/uploads/stores/' . $filename));
                 $store->avatar = $filename;
-            }else{
-                $store->avatar = 'store_avatar.png';
             }
 
             $store->name = request('name');
@@ -229,7 +256,7 @@ class StoreController extends Controller
 
             return redirect()->route('store.mystore')->with('success', 'Store updated successfully');
 
-        }else{
+        } else {
             return redirect()->route('shop.index')->with('error', 'Please create a store before update it');
         }
     }

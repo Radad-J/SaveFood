@@ -6,8 +6,9 @@
             <div class="breadcrumbs-custom-body parallax-content context-dark">
                 <div class="container">
                     <h2 class="text-transform-capitalize breadcrumbs-custom-title">Cart Page</h2>
-                    <h5 class="breadcrumbs-custom-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eius <br class="d-none d-md-block">mod tempor incididunt ut labore et dolore magna aliqua.</h5>
+                    <h5 class="breadcrumbs-custom-text">Here you will find all your cart information including the items
+                        and the total
+                    </h5>
                 </div>
             </div>
         </div>
@@ -43,12 +44,13 @@
                                 <td><a class="table-cart-figure" href="{{route('pack.show', $item->id)}}"><img
                                             src="{{asset('images/uploads/packs/'.$item->attributes->picture)}}" alt=""
                                             width="146" height="132"/></a><a class="table-cart-link"
-                                                                             href="single-product.html">{{$item->name}}</a>
+                                                                             href="{{route('pack.show', $item->id)}}">{{$item->name}}</a>
                                 </td>
                                 <td>{{$item->price}}€</td>
                                 <td>
                                     <div class="table-cart-stepper">
-                                        <input class="input-quantity form-input" id="quantity-{{$item->id}}" type="number" data-zeros="true"
+                                        <input class="input-quantity form-input" id="quantity-{{$item->id}}"
+                                               type="number" data-zeros="true"
                                                value="{{$item->quantity}}" min="1" max="1000">
                                     </div>
                                 </td>
@@ -92,7 +94,8 @@
                                     <div class="heading-3 font-weight-normal">{{Cart::getTotal()}}€</div>
                                 </div>
                             </div>
-                            <a class="button button-lg button-primary button-zakaria" href="{{route('cart.checkout')}}">Proceed to
+                            <a class="button button-lg button-primary button-zakaria" href="{{route('cart.checkout')}}">Proceed
+                                to
                                 checkout</a>
                         </div>
                     </div>
@@ -108,7 +111,7 @@
 <script type="text/javascript">
     function updatecart(e) {
         var idQty = e.getAttribute("data-id");
-        var qtyname = 'quantity-'+ idQty;
+        var qtyname = 'quantity-' + idQty;
         $.ajax({
             url: '{{ route('cart.updateitem') }}',
             method: "patch",
@@ -117,10 +120,10 @@
                 document.getElementById(qtyname).value
             },
             success: function (response) {
-               if (response == true) {
+                if (response == true) {
                     window.location.href = '/cart';
                 } else {
-                   console.log('error');
+                    console.log('error');
                 }
             }
         });

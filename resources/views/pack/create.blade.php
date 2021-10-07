@@ -21,12 +21,11 @@
                                                         width="200" height="200" id="output"
                                                         src="{{ asset('images/uploads/packs/default_pack.png') }}"/>
                                                 </label>
-                                                <input class="form-input form-control" name="picture" id="file-input" type="file"
+                                                <input class="form-input form-control" name="picture" id="file-input"
+                                                       type="file"
                                                        onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"/>
                                                 @error('picture')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                <p style="color:red"> {{ $message }} </p>
                                                 @enderror
                                             </div>
                                         </div>
@@ -37,17 +36,17 @@
                                                     @foreach($categories as $category)
                                                         <li>
                                                             <label class="checkbox-inline">
-                                                                <input class="form-input form-control @error('categories') is-invalid @enderror" name="categories[]"
-                                                                       value="{{$category->id}}"
-                                                                       type="checkbox">{{$category->category}}
+                                                                <input
+                                                                    class="form-input form-control @error('categories') is-invalid @enderror"
+                                                                    name="categories[]"
+                                                                    value="{{$category->id}}"
+                                                                    type="checkbox">{{$category->category}}
                                                             </label>
                                                         </li>
                                                     @endforeach
                                                 </ul>
                                                 @error('categories')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                <p style="color:red"> {{ $message }} </p>
                                                 @enderror
                                             </div>
                                         </div>
