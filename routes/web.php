@@ -88,10 +88,6 @@ Route::get('/pack/{id}', [PackController::class, 'show'])->where('id', '[0-9]+')
 Route::get('role', [RoleController::class, 'index'])->name('role.index');
 Route::get('role/{id}', [RoleController::class, 'show'])->where('id', '[0-9]+')->name('role.show');
 
-// Type routes
-Route::get('category', [CategoryController::class, 'index'])->name('category.index');
-Route::get('category/{id}', [CategoryController::class, 'show'])->where('id', '[0-9]+')->name('category.show');
-
 //Contact us routes
 Route::get('/contactus', [ContactusController::class, 'index'])->name('contactus');
 
