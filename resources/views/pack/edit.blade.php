@@ -26,9 +26,7 @@
                                                        type="file" value="{{ $pack->picture }}"
                                                        onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])"/>
                                                 @error('picture')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                <p style="color:red"> {{ $message }} </p>
                                                 @enderror
                                             </div>
                                         </div>
@@ -50,9 +48,7 @@
                                                     @endforeach
                                                 </ul>
                                                 @error('categories')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
+                                                <p style="color:red"> {{ $message }} </p>
                                                 @enderror
                                             </div>
                                         </div>
