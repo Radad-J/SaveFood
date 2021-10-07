@@ -42,14 +42,21 @@
                         <div class="rd-navbar-search rd-navbar-search-2">
                             <button class="rd-navbar-search-toggle rd-navbar-fixed-element-3"
                                     data-rd-navbar-toggle=".rd-navbar-search"><span></span></button>
-                            <form class="rd-search" action="#"
+                            <form class="rd-search" action="{{route('store.searchHome')}}"
                                   method="get" data-search-live="rd-search-results-live">
                                 @csrf
                                 <div class="form-wrap">
-                                    <input class="rd-navbar-search-form-input form-input"
-                                           id="rd-navbar-search-form-input" type="text" name="search"
-                                           autocomplete="off"/>
-                                    <label class="form-label" for="rd-navbar-search-form-input">Search...</label>
+                                    <input
+                                        class="rd-navbar-search-form-input form-input form-control @error('keyword') is-invalid @enderror"
+                                        id="rd-navbar-search-form-input" type="text" name="keyword"
+                                        autocomplete="off"/>
+                                    <label class="form-label" for="rd-navbar-search-form-input">Search a store by name
+                                        or city...</label>
+                                    @error('keyword')
+                                    <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                    @enderror
                                     <div class="rd-search-results-live" id="rd-search-results-live"></div>
                                     <button class="rd-search-form-submit fl-bigmug-line-search74"
                                             type="submit"></button>
@@ -57,12 +64,13 @@
                             </form>
                         </div>
                         <!-- RD Navbar Basket-->
-                        @if(!Cart::isEmpty())
-                            <div class="rd-navbar-basket-wrap">
-                                <button class="rd-navbar-basket fl-bigmug-line-shopping202"
-                                        data-rd-navbar-toggle=".cart-inline">
-                                    <span>{{ (count(Cart::getContent())) }}</span>
-                                </button>
+
+                        <div class="rd-navbar-basket-wrap">
+                            <button class="rd-navbar-basket fl-bigmug-line-shopping202"
+                                    data-rd-navbar-toggle=".cart-inline">
+                                <span>{{ (count(Cart::getContent())) }}</span>
+                            </button>
+                            @if(!Cart::isEmpty())
                                 <div class="cart-inline">
                                     <div class="cart-inline-header">
                                         <h5 class="cart-inline-title">In
@@ -108,8 +116,16 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endif
+                            @else
+                                <div class="cart-inline">
+                                    <div class="cart-inline-header">
+                                        <h6 class="cart-inline-title text-center"><span>Empty cart</span>
+                                        </h6>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+
                         @if(Auth::user())
                             <div>
                                 <ul class="rd-navbar-nav">
@@ -161,6 +177,8 @@
                             <li class="rd-nav-item active"><a class="rd-nav-link" href="{{route('welcome')}}">Home</a>
                             </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('shop.index')}}">Shop</a>
+                            </li>
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('store.index')}}">Partners</a>
                             </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('contactus')}}">Contact Us</a>
                             </li>
