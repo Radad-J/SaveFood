@@ -5,8 +5,6 @@
             <div class="breadcrumbs-custom-body parallax-content context-dark">
                 <div class="container">
                     <h2 class="text-transform-capitalize breadcrumbs-custom-title">Contact Us</h2>
-                    <h5 class="breadcrumbs-custom-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eius <br class="d-none d-md-block">mod tempor incididunt ut labore et dolore magna aliqua.</h5>
                 </div>
             </div>
         </div>
