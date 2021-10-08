@@ -14,8 +14,7 @@
                 <div class="rd-navbar-aside">
                     <div class="rd-navbar-collapse">
                         <ul class="contacts-classic">
-                            <li><span class="contacts-classic-title">Call us:</span> <a class="link" href="tel:#">+1
-                                    (844) 123 456 78</a>
+                            <li><span class="contacts-classic-title">Call us:</span> <a class="link" href="tel:#">+32 2 514 26 88</a>
                             </li>
                             <li><a href="mailto:radad1998@gmail.com">info@savefood.com</a></li>
                         </ul>
