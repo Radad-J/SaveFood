@@ -111,3 +111,7 @@ Route::post('/charge', [CheckoutController::class, 'charge'])->name('checkout.ch
 Route::get('store/{id}', [StoreController::class, 'show'])->where('id', '[0-9]+')->name('store.show');
 Route::get('/store/searchHome', [StoreController::class, 'searchHome'])->name('store.searchHome');
 Route::get('/stores', [StoreController::class, 'index'])->name('store.index');
+
+//Terms and conditions
+Route::get('/terms-and-conditions', [WelcomeController::class, 'termsConditions'])->name('terms-and-conditions');
+Route::get('/privacy-policy', [WelcomeController::class, 'privacyPolicy'])->name('privacy-policy');

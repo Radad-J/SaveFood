@@ -17,7 +17,8 @@
                                         width="200" height="200" id="output"
                                         src="{{ asset('images/uploads/users/default_avatar.png') }}"/></label>
 
-                                    <input id="avatar" type="file" class="form-input form-control" name="avatar" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                                <input id="avatar" type="file" class="form-input form-control" name="avatar"
+                                       onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                                 @error('avatar')
                                 <p style="color:red"> {{ $message }} </p>
                                 @enderror
@@ -89,9 +90,9 @@
                                             <label class="checkbox-inline">
                                                 <input
                                                     class="form-input form-control"
-                                                    name="age"
-                                                    type="checkbox"
-                                                    checked="1" >I certify that i have more than 18 years old
+                                                    name="terms"
+                                                    type="checkbox">I allow SaveFood to store my email address and name according to our
+                                                privacy policy.
                                             </label>
                                         </li>
                                         <li>
@@ -99,12 +100,13 @@
                                                 <input
                                                     class="form-input form-control"
                                                     name="terms and conditions"
-                                                    type="checkbox"
-                                                    checked="1" >I agree with the <a href="#">terms & conditions</a>
+                                                    type="checkbox">I agree with the <a href="{{route('terms-and-conditions')}}">terms &
+                                                    conditions</a> and the <a href="{{route('privacy-policy')}}">privacy
+                                                    policy</a>
                                             </label>
                                         </li>
                                     </ul>
-                                    @error('age')
+                                    @error('terms')
                                     <p style="color:red"> {{ $message }} </p>
                                     @enderror
                                     @error('terms_and_conditions')
