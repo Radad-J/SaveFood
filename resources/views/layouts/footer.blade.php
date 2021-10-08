@@ -60,8 +60,8 @@
     </div>
     <div class="footer-modern-panel text-center">
         <div class="container">
-            <p class="rights">Copyright<span>&copy;&nbsp; </span><span class="copyright-year"></span><span>&nbsp;</span><span>SaveFood International</span><span>.&nbsp; All rights reserved.</span><span>&nbsp;</span><a
-                    href="privacy-policy.html">Privacy Policy</a><span>.</span></p>
+            <p class="rights">Copyright <span>&copy; &nbsp; </span><span class="copyright-year"></span><span> SaveFood International</span><span>.&nbsp; All rights reserved.</span>
+            </p>
         </div>
     </div>
 </footer>
