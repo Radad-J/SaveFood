@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\PackController;
@@ -88,13 +89,6 @@ Route::get('/pack/{id}', [PackController::class, 'show'])->where('id', '[0-9]+')
 Route::get('role', [RoleController::class, 'index'])->name('role.index');
 Route::get('role/{id}', [RoleController::class, 'show'])->where('id', '[0-9]+')->name('role.show');
 
-// Type routes
-Route::get('category', [CategoryController::class, 'index'])->name('category.index');
-Route::get('category/{id}', [CategoryController::class, 'show'])->where('id', '[0-9]+')->name('category.show');
-
-//Contact us routes
-Route::get('/contactus', [ContactusController::class, 'index'])->name('contactus');
-
 //Cart routes
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
@@ -115,3 +109,8 @@ Route::get('/stores', [StoreController::class, 'index'])->name('store.index');
 //Terms and conditions
 Route::get('/terms-and-conditions', [WelcomeController::class, 'termsConditions'])->name('terms-and-conditions');
 Route::get('/privacy-policy', [WelcomeController::class, 'privacyPolicy'])->name('privacy-policy');
+
+//Contact-us routes
+
+Route::get('contact-us', [ ContactController::class, 'getContact' ]);
+Route::post('contact-us', [ ContactController::class, 'saveContact' ])->name('contact-us');

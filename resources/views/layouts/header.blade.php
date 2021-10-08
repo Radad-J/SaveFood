@@ -180,7 +180,7 @@
                             </li>
                             <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('store.index')}}">Partners</a>
                             </li>
-                            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('contactus')}}">Contact Us</a>
+                            <li class="rd-nav-item"><a class="rd-nav-link" href="{{route('contact-us')}}">Contact Us</a>
                             </li>
                         </ul>
                     </div>
