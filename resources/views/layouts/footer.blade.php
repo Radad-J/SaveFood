@@ -9,7 +9,7 @@
                     <ul class="footer-modern-list footer-modern-list-2 d-sm-inline-block d-md-block">
                         <li><a href="{{'/#featuredPacks'}}">New Packs</a></li>
                         <li><a href="{{'/#whyUs'}}">Why us ?</a></li>
-                        <li><a href="{{route('contactus')}}">Contact Us</a></li>
+                        <li><a href="{{route('contact-us')}}">Contact Us</a></li>
                         <li><a href="{{route('shop.index')}}">Shop</a></li>
                         <li><a href="#">Meals</a></li>
                         <li><a href="#">Pastries</a></li>
