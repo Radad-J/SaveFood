@@ -17,7 +17,7 @@ class ShopController extends Controller
     public function index()
     {
         /* Get all packs to display */
-        $packs = Pack::paginate(9);
+        $packs = DB::table('packs')->orderByDesc('created_at')->paginate(9);
 
         /* Gets total packs by name of the category */
         $packsByCat = Pack::getPacksByCategory();

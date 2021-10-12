@@ -131,7 +131,7 @@ class PackController extends Controller
         /*Ratings of the pack + number format*/
         $pack->avgRate = number_format(Rating::where('pack_id', '=', $id)->avg('rate'), 1);
         $pack->reviews = DB::table('ratings as r')
-            ->select('u.name', 'r.rate', 'r.title', 'r.comment', 'u.avatar')
+            ->select('u.name', 'r.rate', 'r.title', 'r.comment', 'u.avatar', 'r.created_at')
             ->join('users as u', 'u.id', '=', 'r.user_id')
             ->where('r.pack_id', '=', $id)->get();
 

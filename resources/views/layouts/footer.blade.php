@@ -37,7 +37,7 @@
                         <li>
                             <div class="unit unit-spacing-sm flex-column flex-md-row">
                                 <div class="unit-left"><span class="icon mdi mdi-phone"></span></div>
-                                <div class="unit-body"><a href="tel:#">+32 2 514 26 88</a></div>
+                                <div class="unit-body"><a href="tel:#">+32 252 14 26 88</a></div>
                             </div>
                         </li>
                         <li>

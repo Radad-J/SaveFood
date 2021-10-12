@@ -547,7 +547,7 @@
                                  role="tabpanel">
                                 <div class="card-body">
                                     <p>Yes we do! 70% of the earnings goes to different charities who their main goal is
-                                        helping poor people</p>
+                                        helping people in need</p>
                                 </div>
                             </div>
                         </article>
@@ -563,8 +563,8 @@
                                         <div class="box-icon-creative-icon fl-bigmug-line-big104"></div>
                                     </div>
                                     <div class="unit-body">
-                                        <h5 class="box-icon-creative-title"><a href="#">Free Shipping</a></h5>
-                                        <p class="box-icon-creative-text">Enjoy our fast &amp; free delivery</p>
+                                        <h5 class="box-icon-creative-title"><a href="{{route('store.index')}}">Multiple stores</a></h5>
+                                        <p class="box-icon-creative-text">Partners are all over the world</p>
                                     </div>
                                 </div>
                             </article>
@@ -577,7 +577,7 @@
                                         <div class="box-icon-creative-icon fl-bigmug-line-chat55"></div>
                                     </div>
                                     <div class="unit-body">
-                                        <h5 class="box-icon-creative-title"><a href="#">Customer care</a></h5>
+                                        <h5 class="box-icon-creative-title"><a href="{{route('contact-us')}}">Customer care</a></h5>
                                         <p class="box-icon-creative-text">Always ready to help you</p>
                                     </div>
                                 </div>
@@ -591,8 +591,8 @@
                                         <div class="box-icon-creative-icon fl-bigmug-line-like51"></div>
                                     </div>
                                     <div class="unit-body">
-                                        <h5 class="box-icon-creative-title"><a href="#">Healthy &amp; energetic</a></h5>
-                                        <p class="box-icon-creative-text">Our drinks are very nutritious.</p>
+                                        <h5 class="box-icon-creative-title"><a href="{{route('shop.index')}}">Delicious and tasty</a></h5>
+                                        <p class="box-icon-creative-text">From the best food makers</p>
                                     </div>
                                 </div>
                             </article>
@@ -674,14 +674,20 @@
                     </div>
                     <div class="col-lg-9 inset-lg-bottom-10">
                         <!-- RD Mailform-->
-                        <form class="rd-form rd-mailform rd-form-inline form-lg rd-form-text-center"
+                        <form class="rd-form-inline form-lg rd-form-text-center"
                               data-form-output="form-output-global" data-form-type="subscribe" method="post"
-                              action="bat/rd-mailform.php">
+                              action="{{route('newsletter-subscribe')}}">
+                            @csrf
                             <div class="form-wrap wow fadeInUp">
-                                <input class="form-input" id="subscribe-form-0-email" type="email" name="email"
+                                <input class="form-input form-control @error('email') is-invalid @enderror" id="subscribe-form-0-email" type="email" name="email"
                                        data-constraints="@Email @Required"/>
                                 <label class="form-label" for="subscribe-form-0-email">Enter your e-mail address</label>
                             </div>
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                            @enderror
                             <div class="form-button wow fadeInRight">
                                 <button class="button button-shadow-2 button-zakaria button-lg button-primary"
                                         type="submit">Subscribe

@@ -24,8 +24,8 @@ class RatingsTableSeeder extends Seeder
         //Fill data
         DB::table('ratings')->insert([
             [
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => '08-10-2021 20:00:00',
+                'updated_at' => null,
                 'user_id' => 2,
                 'pack_id' => 1,
                 'title'=> 'Loved it',
@@ -33,8 +33,8 @@ class RatingsTableSeeder extends Seeder
                 'rate' => 4,
             ],
             [
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'created_at' => '08-10-2021 20:30:00',
+                'updated_at' => null,
                 'user_id' => 5,
                 'pack_id' => 1,
                 'title'=> 'Medium',

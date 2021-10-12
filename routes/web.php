@@ -7,6 +7,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\FavouriteController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PackController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
@@ -111,6 +112,8 @@ Route::get('/terms-and-conditions', [WelcomeController::class, 'termsConditions'
 Route::get('/privacy-policy', [WelcomeController::class, 'privacyPolicy'])->name('privacy-policy');
 
 //Contact-us routes
-
 Route::get('contact-us', [ ContactController::class, 'getContact' ]);
 Route::post('contact-us', [ ContactController::class, 'saveContact' ])->name('contact-us');
+
+//Newsletter
+Route::post('newsletter/subscribe', [ NewsletterController::class, 'create' ])->name('newsletter-subscribe');
