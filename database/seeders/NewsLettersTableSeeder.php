@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class NewsLattersTableSeeder extends Seeder
+class NewsLettersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,11 +17,11 @@ class NewsLattersTableSeeder extends Seeder
     {
         //Empty the table first
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        DB::table('newsletters')->truncate();
+        DB::table('newsletter')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         //Fill data
-        DB::table('newsletters')->insert([
+        DB::table('newsletter')->insert([
             [
                 'created_at' => Carbon::now(),
                 'updated_at' => null,
@@ -30,7 +30,7 @@ class NewsLattersTableSeeder extends Seeder
             [
                 'created_at' => Carbon::now(),
                 'updated_at' => null,
-                'email' => 'radad19998@gmail.com',
+                'email' => 'sarah4020@gmail.com',
             ],
         ]);
     }
