@@ -32,7 +32,7 @@
                              data-child="#child-carousel" data-for="#child-carousel">
                             <div class="item">
                                 <div class="slick-product-figure"><img
-                                        src={{ asset('images/uploads/packs/'.$pack->picture) }} alt="{{$pack->title}}"
+                                        src="{{ asset('images/uploads/packs/'.$pack->picture) }}" alt="{{$pack->title}}"
                                         width="530" height="480"/>
                                 </div>
                             </div>
@@ -99,7 +99,9 @@
                                 to {{ \Carbon\Carbon::parse($pack->available_hour_to)->format('H:i') }}</li>
                             <li><span>Stock:</span><span>{{ $pack->stock }}</span></li>
                         </ul>
-
+                        @if(\Carbon\Carbon::now()->gt($pack->available_day_to))
+                            <h4 style="color:red" class="text-transform-none font-weight-medium my-4">Whoops, looks like this pack is unavailable or expired.</h4>
+                        @else
                         <form action="{{route('cart.add')}}" method="post">
                             @csrf
                             <div class="group-xs group-middle mb-3">
@@ -115,6 +117,7 @@
                                 </div>
                             </div>
                         </form>
+                        @endif
                         <hr class="hr-gray-100">
                         <div class="group-xs group-middle"><span class="list-social-title">Share</span>
                             <div>
@@ -136,10 +139,7 @@
                     <ul class="nav nav-tabs nav-tabs-1">
                         <li class="nav-item" role="presentation"><a class="nav-link active" href="#tabs-1-1"
                                                                     data-toggle="tab">testimonials</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2" data-toggle="tab">Additional
-                                information</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-3" data-toggle="tab">Delivery
-                                and payment</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="#tabs-1-2" data-toggle="tab">Reviews</a></li>
                     </ul>
                 </div>
                 <!-- Tab panes-->
@@ -147,7 +147,7 @@
                     <div class="tab-pane fade show active" id="tabs-1-1">
                         <div class="box-comment">
                             <div class="unit flex-column flex-sm-row unit-spacing-md">
-                                <div class="unit-left"><a class="box-comment-figure" href="#"><img
+                                <div class="unit-left"><a class="box-comment-figure" href="{{route('store.show', $store->id)}}"><img
                                             src="{{asset('images/uploads/stores/'.$store->avatar)}}" alt="" width="119"
                                             height="119"/></a></div>
                                 <div class="unit-body">
@@ -170,65 +170,49 @@
                                 </div>
                             </div>
                         </div>
-                        @if(count($pack->reviews)>0)
-                            <h4 class="text-transform-none font-weight-medium">Reviews</h4>
-                            @foreach($pack->reviews as $review)
-                                <div class="row">
-                                    <div class="col-1">
-                                        <img width="60" alt="{{$review->name}}"
-                                             src="{{asset('images/uploads/users/'.$review->avatar)}}"/>
-                                    </div>
-                                    <div class="col-11">
 
-                                        <div class="box-rating"><h5 class="mr-3"
-                                                                    style="display: inline;color:black">{{ucFirst($review->name)}}</h5>
-                                            <span
-                                                class=" @if($review->rate >= 1 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
-                                            <span
-                                                class=" @if($review->rate >= 2 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
-                                            <span
-                                                class=" @if($review->rate >= 3 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
-                                            <span
-                                                class=" @if($review->rate >= 4 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
-                                            <span
-                                                class=" @if($review->rate >= 5 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
-                                        </div>
-                                        <h6>{{$review->title}}</h6>
-
-                                        @if(!is_null($review->comment))
-                                            <p>{{$review->comment}}</p>
-
-                                        @endif
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
                     </div>
                     <div class="tab-pane fade" id="tabs-1-2">
                         <div class="single-product-info">
                             <div class="unit unit-spacing-md flex-column flex-sm-row align-items-sm-center">
-                                <div class="unit-left"><span class="icon icon-80 mdi mdi-information-outline"></span>
-                                </div>
                                 <div class="unit-body">
-                                    <p>Ac orci phasellus egestas tellus rutrum tellus pellentesque. Pellentesque elit
-                                        eget gravida cum sociis. Ut porttitor leo a diam sollicitudin tempor id.
-                                        Consectetur lorem donec massa sapien faucibus et molestie ac. Rutrum tellus
-                                        pellentesque eu tincidunt tortor aliquam. Lacinia at quis risus sed. Elit
-                                        ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="tabs-1-3">
-                        <div class="single-product-info">
-                            <div class="unit unit-spacing-md flex-column flex-sm-row align-items-sm-center">
-                                <div class="unit-left"><span class="icon icon-80 mdi mdi-truck-delivery"></span></div>
-                                <div class="unit-body">
-                                    <p>Ut tortor pretium viverra suspendisse potenti. Fermentum leo vel orci porta non
-                                        pulvinar neque laoreet suspendisse. Pellentesque dignissim enim sit amet.
-                                        Rhoncus urna neque viverra justo nec ultrices dui sapien eget. Diam phasellus
-                                        vestibulum lorem sed risus. Feugiat in fermentum posuere urna. Feugiat vivamus
-                                        at augue eget arcu. Feugiat pretium nibh ipsum consequat.</p>
+                                    @if(count($pack->reviews)>0)
+                                        @foreach($pack->reviews as $review)
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <img width="60" alt="{{$review->name}}"
+                                                         src="{{asset('images/uploads/users/'.$review->avatar)}}"/>
+                                                </div>
+                                                <div class="col-4">
+                                                <h5>{{$review->name}}</h5>
+                                                </div>
+                                                <div class="col-4">
+                                                <h6>{{\Carbon\Carbon::parse($review->created_at)->format('d/m/Y')}}</h6>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="box-rating"><h6 class="mr-3"
+                                                                                style="display: inline;color:black">{{ucFirst($review->title)}}</h6>
+                                                        <span
+                                                            style="color:#ffcc00" class="@if($review->rate >= 1 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
+                                                        <span
+                                                            style="color:#ffcc00" class=" @if($review->rate >= 2 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
+                                                        <span
+                                                            style="color:#ffcc00" class=" @if($review->rate >= 3 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
+                                                        <span
+                                                            style="color:#ffcc00" class=" @if($review->rate >= 4 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
+                                                        <span
+                                                            style="color:#ffcc00" class=" @if($review->rate >= 5 ) icon mdi mdi-star @else icon mdi mdi-star-outline @endif"></span>
+                                                    </div>
+                                                    @if(!is_null($review->comment))
+                                                        <p>{{$review->comment}}</p>
+
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <h6><i>No reviews yet, be first one to write a review!</i></h6>
+                                    @endif
                                 </div>
                             </div>
                         </div>

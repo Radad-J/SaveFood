@@ -131,7 +131,7 @@
                                                             height="20" style="width:110px"/></a></div>
                                                 <div class="unit-body">
                                                     <p class="product-minimal-title"><a
-                                                            href="single-product.html">{{$randomPack->title}}</a></p>
+                                                            href="{{route('pack.show', $randomPack->id)}}">{{$randomPack->title}}</a></p>
                                                     @if(is_null($randomPack->sold_price))
                                                         <p class="product-minimal-price">{{$randomPack->price}}€</p>
                                                     @else

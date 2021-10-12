@@ -27,25 +27,28 @@ class CartController extends Controller
      */
     public function add(Request $request)
     {
-
         $pack = Pack::find($request->pack_id);
-        if (!is_null($pack->sale_price)) {
-            $pack->price = $pack->sale_price;
-        }
-        if ($request->quantity) {
-            $pack->quantity = $request->quantity;
-        } else {
-            $pack->quantity = 1;
-        }
+        if($request->quantity > $pack->stock){
+            return back()->with('error', 'The quantity chosen is greater than the quantity available');
+        }else{
+            if (!is_null($pack->sale_price)) {
+                $pack->price = $pack->sale_price;
+            }
+            if ($request->quantity) {
+                $pack->quantity = $request->quantity;
+            } else {
+                $pack->quantity = 1;
+            }
 
-        \Cart::add(
-            $pack->id,
-            $pack->title,
-            $pack->price,
-            $pack->quantity,
-            ['picture' => $pack->picture]
-        );
-        return back()->with('success', 'Pack added to cart successfully');
+            \Cart::add(
+                $pack->id,
+                $pack->title,
+                $pack->price,
+                $pack->quantity,
+                ['picture' => $pack->picture]
+            );
+            return back()->with('success', 'Pack added to cart successfully');
+        }
     }
 
     /**
