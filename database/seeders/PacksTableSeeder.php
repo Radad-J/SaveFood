@@ -24,14 +24,14 @@ class PacksTableSeeder extends Seeder
         DB::table('packs')->insert([
             [
                 'store_id' => 1,
-                'created_at' => '08-10-2021 00:00:00',
+                'created_at' => '2021-10-08 00:00:00',
                 'updated_at' => null,
                 'title' => 'Croissants',
                 'description' => '8 freshly baked crossiants',
                 'price' => 3.50,
                 'sale_price' => null,
-                'available_day_from' => '08-10-2021 00:00:00',
-                'available_day_to' => '09-10-2021 00:00:00',
+                'available_day_from' => '2021-10-08 17:00:00',
+                'available_day_to' => '2021-10-08 18:00:00',
                 'available_hour_from' => '16:00:00',
                 'available_hour_to' => '20:00:00',
                 'stock' => 20,

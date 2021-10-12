@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             CategoryPackTableSeeder::class,
             FavouritesTableSeeder::class,
             RatingsTableSeeder::class,
-            NewsLattersTableSeeder::class,
+            NewsLettersTableSeeder::class,
         ]);
     }
 }

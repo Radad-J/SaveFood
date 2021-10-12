@@ -24,7 +24,7 @@ class RatingsTableSeeder extends Seeder
         //Fill data
         DB::table('ratings')->insert([
             [
-                'created_at' => '08-10-2021 20:00:00',
+                'created_at' => '2021-10-08 20:00:00',
                 'updated_at' => null,
                 'user_id' => 2,
                 'pack_id' => 1,
@@ -33,7 +33,7 @@ class RatingsTableSeeder extends Seeder
                 'rate' => 4,
             ],
             [
-                'created_at' => '08-10-2021 20:30:00',
+                'created_at' => '2021-10-08 20:30:00',
                 'updated_at' => null,
                 'user_id' => 5,
                 'pack_id' => 1,
