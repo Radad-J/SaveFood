@@ -31,9 +31,9 @@ class Shop extends Model
         }
 
         if ($searchCriteria === "title" && !empty($request->search)) {
-            return DB::table('packs as p')->select('*')
+            return DB::table('packs as p')->select('p.id', 'p.title', 'p.price', 'p.sale_price', 'p.picture')
                 ->join('stores as s', 'p.store_id','=','s.id')
-                ->where('title', 'LIKE', "%{$request->search}%")
+                ->where('p.title', 'LIKE', "%{$request->search}%")
                 ->orWhere('s.city', 'LIKE', "%{$request->search}%")
                 ->paginate(9);
             /*

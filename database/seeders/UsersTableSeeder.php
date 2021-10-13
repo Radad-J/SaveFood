@@ -90,7 +90,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Sam',
                 'email' => 'sam2000@gmail.com',
                 'email_verified_at' => null,
-                'password' => Hash::make('14725836'),
+                'password' => Hash::make('12345678'),
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
                 'updated_at' => null,
